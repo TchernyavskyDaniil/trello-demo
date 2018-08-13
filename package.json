@@ -36,7 +36,7 @@
     "prettier": "prettier --write 'src/**/*.js'"
   },
   "lint-staged": {
-    "*.{js,css,html}": [
+    "*.{js}": [
       "yarn lint"
     ]
   }
