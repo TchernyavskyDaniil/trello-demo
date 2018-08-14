@@ -5,16 +5,17 @@ import trelloDefault from "../../utils";
 const Container = styled.div`
   background: #fff;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
-  border-radius: 0 3px 3px 0;
   overflow: hidden;
   position: absolute;
-  left: 0;
   display: flex;
   flex-direction: column;
   width: 290px;
   top: 44px;
   z-index: 60;
-  margin-left: 8px;
+  padding: 10px 0 10px 6px;
+  margin: 0;
+  left: 10px;
+  border-radius: 3px;
 `;
 
 const Search = styled.input`
@@ -22,7 +23,7 @@ const Search = styled.input`
   margin: 2px 4px 6px 4px;
   padding: 6px;
   background-color: #e2e4e6;
-  border: 1px solid #cdd2d4;
+  border: 1px solid #a5acb0;
   border-radius: 3px;
   font-size: 16px;
   line-height: 20px;
@@ -47,6 +48,7 @@ const Title = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  padding: 2px 2px 5px 2px;
 `;
 
 const Text = styled.span`

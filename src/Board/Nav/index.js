@@ -118,9 +118,7 @@ class Nav extends Component {
   }
 
   toggleBoard = () => {
-    this.setState({
-      board: !this.state.board
-    });
+    this.setState(prevState => ({ board: !prevState.board }));
   };
 
   render() {
