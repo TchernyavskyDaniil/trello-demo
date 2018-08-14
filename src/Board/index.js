@@ -22,10 +22,10 @@ export default () => (
   <Board>
     <BoardOptions />
     <Cards>
-      <Card nameCard="Имя карточки" />
-      <Card nameCard="Имя карточки 2" />
-      <Card nameCard="Имя карточки 3" />
-      <Card nameCard="Имя карточки 4" />
+      <Card title="Имя карточки" />
+      <Card title="Имя карточки 2" />
+      <Card title="Имя карточки 3" />
+      <Card title="Имя карточки 4" />
     </Cards>
   </Board>
 );

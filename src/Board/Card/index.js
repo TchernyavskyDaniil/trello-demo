@@ -86,18 +86,21 @@ const AddCard = styled.button`
 
 const Plus = styled.span``;
 
-export default props => (
-  <Container>
-    <Header>
-      <Title>{props.nameCard}</Title>
-      <Options>
-        <i className="fas fa-ellipsis-h dotted" />
-      </Options>
-    </Header>
-    <Body>
-      <AddCard>
-        <Plus>+</Plus> Добавить карточку
-      </AddCard>
-    </Body>
-  </Container>
-);
+export default props => {
+  const { title } = props;
+  return (
+    <Container>
+      <Header>
+        <Title>{title}</Title>
+        <Options>
+          <i className="fas fa-ellipsis-h dotted" />
+        </Options>
+      </Header>
+      <Body>
+        <AddCard>
+          <Plus>+</Plus> Добавить карточку
+        </AddCard>
+      </Body>
+    </Container>
+  );
+};
