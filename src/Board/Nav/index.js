@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
+import ListBoards from "./ListBoards";
 
 const Container = styled.nav`
   min-height: 40px;
@@ -108,30 +109,51 @@ const User = styled.img`
   cursor: pointer;
 `;
 
-export default () => (
-  <Container>
-    <OptionsBoard>
-      <Boards>
-        <i className="fas fa-clipboard-list icon-board" />
-        Доски{" "}
-      </Boards>
-      <Search>
-        <SearchField type="text" />
-        <i className="fas fa-search icon-search" />
-      </Search>
-    </OptionsBoard>
-    <Img src="/img/trello-logo.png" />
-    <ActionsBoard>
-      <Add>
-        <i className="fas fa-plus" />
-      </Add>
-      <Info>
-        <i className="fas fa-info" />
-      </Info>
-      <Notification>
-        <i className="far fa-bell" />
-      </Notification>
-      <User src="/img/profile-avatar.png" />
-    </ActionsBoard>
-  </Container>
-);
+class Nav extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      board: false
+    };
+  }
+
+  toggleBoard = () => {
+    this.setState({
+      board: !this.state.board
+    });
+  };
+
+  render() {
+    const { board } = this.state;
+    return (
+      <Container>
+        <OptionsBoard>
+          <Boards onClick={this.toggleBoard}>
+            <i className="fas fa-clipboard-list icon-board" />
+            Доски{" "}
+          </Boards>
+          {board ? <ListBoards /> : null}
+          <Search>
+            <SearchField type="text" />
+            <i className="fas fa-search icon-search" />
+          </Search>
+        </OptionsBoard>
+        <Img src="/img/trello-logo.png" />
+        <ActionsBoard>
+          <Add>
+            <i className="fas fa-plus" />
+          </Add>
+          <Info>
+            <i className="fas fa-info" />
+          </Info>
+          <Notification>
+            <i className="far fa-bell" />
+          </Notification>
+          <User src="/img/profile-avatar.png" />
+        </ActionsBoard>
+      </Container>
+    );
+  }
+}
+
+export default Nav;

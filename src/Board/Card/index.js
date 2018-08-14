@@ -82,6 +82,11 @@ const AddCard = styled.button`
   border-color: transparent;
   background: transparent;
   font-size: 14px;
+  cursor: pointer;
+
+  &:focus {
+    outline: none;
+  }
 `;
 
 const Plus = styled.span``;

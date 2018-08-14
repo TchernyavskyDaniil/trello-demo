@@ -3,6 +3,7 @@ import styled from "styled-components";
 import trelloDefault from "../utils";
 import BoardOptions from "./BoardOptions";
 import Card from "./Card";
+import Nav from "./Nav";
 
 const Board = styled.div`
   background-image: url(${trelloDefault});
@@ -19,13 +20,16 @@ const Cards = styled.div`
 `;
 
 export default () => (
-  <Board>
-    <BoardOptions />
-    <Cards>
-      <Card title="Имя карточки" />
-      <Card title="Имя карточки 2" />
-      <Card title="Имя карточки 3" />
-      <Card title="Имя карточки 4" />
-    </Cards>
-  </Board>
+  <React.Fragment>
+    <Nav />
+    <Board>
+      <BoardOptions />
+      <Cards>
+        <Card title="Имя карточки" />
+        <Card title="Имя карточки 2" />
+        <Card title="Имя карточки 3" />
+        <Card title="Имя карточки 4" />
+      </Cards>
+    </Board>
+  </React.Fragment>
 );
