@@ -28,7 +28,6 @@ const Nick = styled.button`
   line-height: 32px;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.7);
-  cursor: pointer;
 `;
 
 const Pin = styled(Nick)`

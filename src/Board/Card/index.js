@@ -96,7 +96,7 @@ export default props => {
   return (
     <Container>
       <Header>
-        <Title>{title}</Title>
+        <Title placeholder="Напишите что - то :)" defaultValue={title} />
         <Options>
           <i className="fas fa-ellipsis-h dotted" />
         </Options>

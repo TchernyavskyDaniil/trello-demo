@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import ListBoards from "./ListBoards";
+import Boards from "./Boards";
+import Search from "./Search";
 
 const Container = styled.nav`
   min-height: 40px;
@@ -19,13 +20,13 @@ const OptionsBoard = styled.div`
   margin: 5px 10px 5px 10px;
 `;
 
-const Boards = styled.button`
+const BoardsBtn = styled.button`
   transition: 0.1s ease;
   background: hsla(0, 0%, 100%, 0.3);
   border-radius: 3px;
   font-weight: 400;
   line-height: 32px;
-  margin-right: 4px;
+  margin-right: 8px;
   min-width: 32px;
   user-select: none;
   color: white;
@@ -39,39 +40,6 @@ const Boards = styled.button`
 
   .icon-board {
     padding-right: 10px;
-  }
-`;
-
-const Search = styled.div`
-  position: relative;
-
-  .icon-search {
-    display: inline-flex;
-    align-items: center;
-    position: absolute;
-    height: 100%;
-    width: 20px;
-    right: 0;
-    color: white;
-  }
-`;
-
-const SearchField = styled.input`
-  min-width: 180px;
-  transition: 0.1s ease;
-  background: hsla(0, 0%, 100%, 0.3);
-  border-radius: 3px;
-  font-weight: 400;
-  line-height: 32px;
-  user-select: none;
-  color: white;
-  height: 32px;
-  border: none;
-  box-sizing: border-box;
-  padding: 5px 20px 5px 5px;
-
-  &:hover {
-    opacity: 0.8;
   }
 `;
 
@@ -96,11 +64,11 @@ const Img = styled.img`
 
 const ActionsBoard = styled(OptionsBoard)``;
 
-const Add = styled(Boards)``;
+const Add = styled(BoardsBtn)``;
 
-const Info = styled(Boards)``;
+const Info = styled(BoardsBtn)``;
 
-const Notification = styled(Boards)``;
+const Notification = styled(BoardsBtn)``;
 
 const User = styled.img`
   height: 32px;
@@ -110,8 +78,8 @@ const User = styled.img`
 `;
 
 class Nav extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       board: false
     };
@@ -126,15 +94,12 @@ class Nav extends Component {
     return (
       <Container>
         <OptionsBoard>
-          <Boards onClick={this.toggleBoard}>
+          <BoardsBtn onClick={this.toggleBoard}>
             <i className="fas fa-clipboard-list icon-board" />
             Доски{" "}
-          </Boards>
-          {board ? <ListBoards /> : null}
-          <Search>
-            <SearchField type="text" />
-            <i className="fas fa-search icon-search" />
-          </Search>
+          </BoardsBtn>
+          {board ? <Boards /> : null}
+          <Search />
         </OptionsBoard>
         <Img src="/img/trello-logo.png" />
         <ActionsBoard>
