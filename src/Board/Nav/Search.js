@@ -45,9 +45,9 @@ const SearchField = styled.input`
   text-overflow: ellipsis;
   white-space: normal;
   color: ${styledMap({
-  default: "white",
-  searchHover: "#444"
-})};
+    default: "white",
+    searchHover: "#444"
+  })};
   height: 32px;
   border: none;
   box-sizing: border-box;

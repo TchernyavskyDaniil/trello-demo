@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import trelloDefault from "../../utils";
+import { trelloDefault } from "../../utils";
 
 const Container = styled.div`
   background: #fff;

@@ -1,7 +1,10 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import Boards from "./Boards";
 import Search from "./Search";
+import OptionBtn from "./OptionBtn";
+import ActionButtons from "./ActionButtons";
 
 const Container = styled.nav`
   min-height: 40px;
@@ -18,29 +21,6 @@ const OptionsBoard = styled.div`
   display: flex;
   flex-direction: row;
   margin: 5px 10px 5px 10px;
-`;
-
-const BoardsBtn = styled.button`
-  transition: 0.1s ease;
-  background: hsla(0, 0%, 100%, 0.3);
-  border-radius: 3px;
-  font-weight: 400;
-  line-height: 32px;
-  margin-right: 8px;
-  min-width: 32px;
-  user-select: none;
-  color: white;
-  cursor: pointer;
-  height: 32px;
-  border: none;
-
-  &:hover {
-    opacity: 0.8;
-  }
-
-  .icon-board {
-    padding-right: 10px;
-  }
 `;
 
 const Img = styled.img`
@@ -62,21 +42,6 @@ const Img = styled.img`
   }
 `;
 
-const ActionsBoard = styled(OptionsBoard)``;
-
-const Add = styled(BoardsBtn)``;
-
-const Info = styled(BoardsBtn)``;
-
-const Notification = styled(BoardsBtn)``;
-
-const User = styled.img`
-  height: 32px;
-  width: 32px;
-  border-radius: 25em;
-  cursor: pointer;
-`;
-
 class Nav extends Component {
   constructor() {
     super();
@@ -86,7 +51,26 @@ class Nav extends Component {
   }
 
   toggleBoard = () => {
+    const { board } = this.state;
+    if (!board) {
+      document.addEventListener("click", this.handleClick, false);
+    } else {
+      document.removeEventListener("click", this.handleClick, false);
+    }
+
     this.setState(prevState => ({ board: !prevState.board }));
+  };
+
+  handleClick = e => {
+    if (this.node === null) {
+      return null;
+    }
+
+    if (this.node.contains(e.target)) {
+      return null;
+    }
+
+    return this.toggleBoard();
   };
 
   render() {
@@ -94,26 +78,23 @@ class Nav extends Component {
     return (
       <Container>
         <OptionsBoard>
-          <BoardsBtn onClick={this.toggleBoard}>
-            <i className="fas fa-clipboard-list icon-board" />
-            Доски{" "}
-          </BoardsBtn>
-          {board ? <Boards /> : null}
+          <div
+            ref={node => {
+              this.node = node;
+            }}
+          >
+            <OptionBtn onClick={this.toggleBoard}>
+              <i className="fas fa-clipboard-list icon-board" />
+              Доски{" "}
+            </OptionBtn>
+            {board ? <Boards /> : null}
+          </div>
           <Search />
         </OptionsBoard>
-        <Img src="/img/trello-logo.png" />
-        <ActionsBoard>
-          <Add>
-            <i className="fas fa-plus" />
-          </Add>
-          <Info>
-            <i className="fas fa-info" />
-          </Info>
-          <Notification>
-            <i className="far fa-bell" />
-          </Notification>
-          <User src="/img/profile-avatar.png" />
-        </ActionsBoard>
+        <Link to="/">
+          <Img src="/img/trello-logo.png" />
+        </Link>
+        <ActionButtons />
       </Container>
     );
   }
