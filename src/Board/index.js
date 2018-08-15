@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { trelloDefault } from "../utils";
-import BoardOptions from "./BoardOptions";
+import Index from "./Options";
 import Card from "./Card";
 import Nav from "./Nav";
 
@@ -23,7 +23,7 @@ export default () => (
   <React.Fragment>
     <Nav />
     <Board>
-      <BoardOptions />
+      <Index />
       <Cards>
         <Card title="Имя карточки" />
         <Card title="Имя карточки 2" />

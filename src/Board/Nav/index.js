@@ -1,9 +1,8 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import Boards from "./Boards";
+import Boards from "./Board";
 import Search from "./Search";
-import OptionBtn from "./OptionBtn";
 import ActionButtons from "./ActionButtons";
 
 const Container = styled.nav`
@@ -42,62 +41,15 @@ const Img = styled.img`
   }
 `;
 
-class Nav extends Component {
-  constructor() {
-    super();
-    this.state = {
-      board: false
-    };
-  }
-
-  toggleBoard = () => {
-    const { board } = this.state;
-    if (!board) {
-      document.addEventListener("click", this.handleClick, false);
-    } else {
-      document.removeEventListener("click", this.handleClick, false);
-    }
-
-    this.setState(prevState => ({ board: !prevState.board }));
-  };
-
-  handleClick = e => {
-    if (this.node === null) {
-      return null;
-    }
-
-    if (this.node.contains(e.target)) {
-      return null;
-    }
-
-    return this.toggleBoard();
-  };
-
-  render() {
-    const { board } = this.state;
-    return (
-      <Container>
-        <OptionsBoard>
-          <div
-            ref={node => {
-              this.node = node;
-            }}
-          >
-            <OptionBtn onClick={this.toggleBoard}>
-              <i className="fas fa-clipboard-list icon-board" />
-              Доски{" "}
-            </OptionBtn>
-            {board ? <Boards /> : null}
-          </div>
-          <Search />
-        </OptionsBoard>
-        <Link to="/">
-          <Img src="/img/trello-logo.png" />
-        </Link>
-        <ActionButtons />
-      </Container>
-    );
-  }
-}
-
-export default Nav;
+export default () => (
+  <Container>
+    <OptionsBoard>
+      <Boards />
+      <Search />
+    </OptionsBoard>
+    <Link to="/">
+      <Img src="/img/trello-logo.png" />
+    </Link>
+    <ActionButtons />
+  </Container>
+);

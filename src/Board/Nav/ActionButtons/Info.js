@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import onClickOutside from "react-onclickoutside";
 import { Link } from "react-router-dom";
-import { Container, Head, Title, Close } from "./Styled";
+import { Container, Head, Title, Close } from "../../../UI/TitlePopup";
 import OptionBtn from "../OptionBtn";
 import { upgrade } from "../../../utils";
 
@@ -92,37 +93,18 @@ class Info extends Component {
     };
   }
 
-  toggleInfo = () => {
-    const { info } = this.state;
-    if (!info) {
-      document.addEventListener("click", this.handleClick, false);
-    } else {
-      document.removeEventListener("click", this.handleClick, false);
-    }
-
-    this.setState(prevState => ({ info: !prevState.info }));
+  handleClickOutside = () => {
+    this.setState({ info: false });
   };
 
-  handleClick = e => {
-    if (this.node === null) {
-      return null;
-    }
-
-    if (this.node.contains(e.target)) {
-      return null;
-    }
-
-    return this.toggleInfo();
+  toggleInfo = () => {
+    this.setState(prevState => ({ info: !prevState.info }));
   };
 
   render() {
     const { info } = this.state;
     return (
-      <div
-        ref={node => {
-          this.node = node;
-        }}
-      >
+      <div>
         <InfoBtn onClick={this.toggleInfo}>
           <i className="fas fa-info" />
         </InfoBtn>
@@ -184,4 +166,4 @@ class Info extends Component {
   }
 }
 
-export default Info;
+export default onClickOutside(Info);

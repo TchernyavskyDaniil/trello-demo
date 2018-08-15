@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import onClickOutside from "react-onclickoutside";
 import { Link } from "react-router-dom";
 import {
   Container,
@@ -9,7 +10,7 @@ import {
   Action,
   Actions,
   ActionTitle
-} from "./Styled";
+} from "../../../UI/TitlePopup";
 
 const Avatar = styled.img`
   height: 32px;
@@ -42,27 +43,12 @@ class User extends Component {
     };
   }
 
-  toggleUser = () => {
-    const { user } = this.state;
-    if (!user) {
-      document.addEventListener("click", this.handleClick, false);
-    } else {
-      document.removeEventListener("click", this.handleClick, false);
-    }
-
-    this.setState(prevState => ({ user: !prevState.user }));
+  handleClickOutside = () => {
+    this.setState({ user: false });
   };
 
-  handleClick = e => {
-    if (this.node === null) {
-      return null;
-    }
-
-    if (this.node.contains(e.target)) {
-      return null;
-    }
-
-    return this.toggleUser();
+  toggleUser = () => {
+    this.setState(prevState => ({ user: !prevState.user }));
   };
 
   render() {
@@ -127,4 +113,4 @@ class User extends Component {
   }
 }
 
-export default User;
+export default onClickOutside(User);

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import onClickOutside from "react-onclickoutside";
 import {
   Container,
   Head,
@@ -9,7 +10,7 @@ import {
   Actions,
   ActionTitle,
   Text
-} from "./Styled";
+} from "../../../UI/TitlePopup";
 import OptionBtn from "../OptionBtn";
 
 const NotificationBtn = styled(OptionBtn)``;
@@ -124,41 +125,16 @@ class Notification extends Component {
     };
   }
 
-  checkNotifications = () => {
-    document.removeEventListener("click", this.handleClick, false);
-    this.setState(prevState => ({
-      checkNotifications: !prevState.checkNotifications
-    }));
-    document.addEventListener("click", this.handleClick, false);
+  handleClickOutside = () => {
+    this.setState({ notification: false });
   };
 
   toggleNotification = () => {
-    const { notification } = this.state;
-    if (!notification) {
-      document.addEventListener("click", this.handleClick, false);
-    } else {
-      document.removeEventListener("click", this.handleClick, false);
-    }
-
     this.setState(prevState => ({ notification: !prevState.notification }));
   };
 
   toggleMsg = () => {
-    document.removeEventListener("click", this.handleClick, false);
     this.setState(prevState => ({ msg: !prevState.msg }));
-    document.addEventListener("click", this.handleClick, false);
-  };
-
-  handleClick = e => {
-    if (this.node === null) {
-      return null;
-    }
-
-    if (this.node.contains(e.target)) {
-      return null;
-    }
-
-    return this.toggleNotification();
   };
 
   render() {
@@ -251,4 +227,4 @@ class Notification extends Component {
   }
 }
 
-export default Notification;
+export default onClickOutside(Notification);

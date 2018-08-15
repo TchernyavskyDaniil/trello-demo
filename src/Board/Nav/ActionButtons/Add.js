@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import onClickOutside from "react-onclickoutside";
 import {
   Container,
   Head,
@@ -9,7 +10,7 @@ import {
   Actions,
   ActionTitle,
   Text
-} from "./Styled";
+} from "../../../UI/TitlePopup";
 import OptionBtn from "../OptionBtn";
 
 const AddBtn = styled(OptionBtn)``;
@@ -22,37 +23,18 @@ class Add extends Component {
     };
   }
 
-  toggleAdd = () => {
-    const { add } = this.state;
-    if (!add) {
-      document.addEventListener("click", this.handleClick, false);
-    } else {
-      document.removeEventListener("click", this.handleClick, false);
-    }
-
-    this.setState(prevState => ({ add: !prevState.add }));
+  handleClickOutside = () => {
+    this.setState({ add: false });
   };
 
-  handleClick = e => {
-    if (this.node === null) {
-      return null;
-    }
-
-    if (this.node.contains(e.target)) {
-      return null;
-    }
-
-    return this.toggleAdd();
+  toggleAdd = () => {
+    this.setState(prevState => ({ add: !prevState.add }));
   };
 
   render() {
     const { add } = this.state;
     return (
-      <div
-        ref={node => {
-          this.node = node;
-        }}
-      >
+      <div>
         <AddBtn onClick={this.toggleAdd}>
           <i className="fas fa-plus" />
         </AddBtn>
@@ -97,4 +79,4 @@ class Add extends Component {
   }
 }
 
-export default Add;
+export default onClickOutside(Add);
