@@ -126,7 +126,9 @@ class Notification extends Component {
   }
 
   checkNewNotifications = () => {
-    this.setState(prevState => ({checkNotifications: !prevState.checkNotifications}));
+    this.setState(prevState => ({
+      checkNotifications: !prevState.checkNotifications
+    }));
   };
 
   handleClickOutside = () => {

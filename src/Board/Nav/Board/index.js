@@ -131,7 +131,7 @@ class Board extends Component {
   };
 
   hideBoard = () => {
-    this.setState(prevState => ({hide: !prevState.hide}));
+    this.setState(prevState => ({ hide: !prevState.hide }));
   };
 
   render() {
@@ -155,10 +155,12 @@ class Board extends Component {
                   <i className="fas fa-minus minus" />
                 </Hide>
               </Title>
-              {hide ? null : <BoardContainer>
-                <Img src={trelloDefault} />
-                <Name>Текст доски заголовок</Name>
-              </BoardContainer>}
+              {hide ? null : (
+                <BoardContainer>
+                  <Img src={trelloDefault} />
+                  <Name>Текст доски заголовок</Name>
+                </BoardContainer>
+              )}
             </TypeBoard>
             <Options>
               <Option>
