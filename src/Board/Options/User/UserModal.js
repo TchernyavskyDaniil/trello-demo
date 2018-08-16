@@ -15,6 +15,7 @@ import {
 } from "../../../UI/TitlePopup";
 import Input from "../../../UI/Input";
 import Submit from "../../../UI/Submit";
+import Hr from "../../../UI/Hr";
 
 const PreviewContainer = styled(Container)`
   min-height: 180px;
@@ -161,15 +162,6 @@ const AboutYouArea = styled.textarea`
 
 const Desc = styled.div`
   margin: 0 12px 6px 12px;
-`;
-
-const Hr = styled.hr`
-  margin: 16px 12px;
-  background: #d6dadc;
-  border: 0;
-  color: #d6dadc;
-  height: 1px;
-  padding: 0;
 `;
 
 const DescText = styled.p`

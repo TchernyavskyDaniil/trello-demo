@@ -6,6 +6,7 @@ import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
 import CountUsers from "./User/CountUsers";
 import User from "./User/User";
+import Add from "./User/Add";
 import OptionBtn from "../../UI/OptionBtn";
 
 const ContainerBoard = styled.div`
@@ -41,34 +42,11 @@ const EndWrapper = styled.span`
   margin-right: 5px;
 `;
 
-const AddUser = styled.div`
-  margin-left: 20px;
-  position: relative;
-  background-color: rgba(0, 0, 0, 0.2);
-  color: white;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  border-radius: 25em;
-  left: -4px;
-
-  .add {
-    font-size: 12px;
-  }
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-`;
-
 const UserContainer = styled.div`
   display: flex;
   flex-direction: row;
-  min-width: 140px;
+  min-width: 70px;
+  position: relative;
 `;
 
 const Users = styled.div`
@@ -129,10 +107,8 @@ class Index extends Component {
           </Users>
           <UserInfo>
             <CountUsers img={img} />
-            <AddUser>
-              <i className="fas fa-user-plus add" />
-            </AddUser>
           </UserInfo>
+          <Add />
         </UserContainer>
       </ContainerBoard>
     );
