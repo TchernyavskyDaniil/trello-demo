@@ -125,6 +125,10 @@ class Notification extends Component {
     };
   }
 
+  checkNewNotifications = () => {
+    this.setState(prevState => ({checkNotifications: !prevState.checkNotifications}));
+  };
+
   handleClickOutside = () => {
     this.setState({ notification: false });
   };
@@ -159,12 +163,12 @@ class Notification extends Component {
             </Head>
             <Body>
               {checkNotifications ? (
-                <CheckAll onClick={this.checkNotifications}>
+                <CheckAll onClick={this.checkNewNotifications}>
                   {" "}
                   Фильтр по непрочитанным{" "}
                 </CheckAll>
               ) : (
-                <CheckAll onClick={this.checkNotifications}>
+                <CheckAll onClick={this.checkNewNotifications}>
                   {" "}
                   Посмотреть все{" "}
                 </CheckAll>
@@ -181,7 +185,7 @@ class Notification extends Component {
                     <Sub> Нет непрочитанных уведомлений </Sub>
                     <CheckNotif>
                       Нажмите{" "}
-                      <CheckAll onClick={this.checkNotifications}>
+                      <CheckAll onClick={this.checkNewNotifications}>
                         {" "}
                         Посмотреть все{" "}
                       </CheckAll>

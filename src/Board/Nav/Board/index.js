@@ -79,7 +79,7 @@ const Name = styled.span`
 
 const Options = styled.ul`
   padding: 0;
-  margin: 20px 12px 20px 8px;
+  margin: 6px 12px 12px 8px;
   list-style: none;
 `;
 
@@ -117,7 +117,8 @@ class Board extends Component {
   constructor() {
     super();
     this.state = {
-      outsideClick: false
+      outsideClick: false,
+      hide: false
     };
   }
 
@@ -129,8 +130,12 @@ class Board extends Component {
     this.setState({ outsideClick: false });
   };
 
+  hideBoard = () => {
+    this.setState(prevState => ({hide: !prevState.hide}));
+  };
+
   render() {
-    const { outsideClick } = this.state;
+    const { outsideClick, hide } = this.state;
     return (
       <div>
         <OptionBtn onClick={this.toggleBoard}>
@@ -146,14 +151,14 @@ class Board extends Component {
                   <i className="far fa-star star" />
                   <Text>Тест чета</Text>
                 </TitleContainer>
-                <Hide>
+                <Hide onClick={this.hideBoard}>
                   <i className="fas fa-minus minus" />
                 </Hide>
               </Title>
-              <BoardContainer>
+              {hide ? null : <BoardContainer>
                 <Img src={trelloDefault} />
                 <Name>Текст доски заголовок</Name>
-              </BoardContainer>
+              </BoardContainer>}
             </TypeBoard>
             <Options>
               <Option>
