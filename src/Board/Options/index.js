@@ -4,12 +4,14 @@ import styledMap from "styled-map";
 import UserName from "./UserName";
 import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
+import User from "./User";
 import OptionBtn from "../../UI/OptionBtn";
 
 const ContainerBoard = styled.div`
   display: flex;
   flex-direction: row;
   padding: 10px;
+  align-items: center;
 `;
 
 const BtnWrapper = styled.div`
@@ -18,12 +20,6 @@ const BtnWrapper = styled.div`
   align-items: center;
   font-weight: 200;
   position: relative;
-`;
-
-const UserWrapper = styled(BtnWrapper)`
-  min-width: 120px;
-  justify-content: space-between;
-  padding: 0 5px 0 5px;
 `;
 
 const Pin = styled(OptionBtn)`
@@ -44,48 +40,52 @@ const EndWrapper = styled.span`
   margin-right: 5px;
 `;
 
-const Users = styled.ul`
-  padding: 0;
-  list-style: none;
-  margin: 0;
-`;
-
-const User = styled.li`
-  width: 28px;
-  height: 28px;
-  cursor: pointer;
-  border-radius: 25em;
-  list-style: none;
-`;
-
-const UserImage = styled.img`
-  width: 28px;
-  height: 28px;
-  border-radius: 25em;
-`;
-
-const CountUser = styled(User)`
+const CountUsers = styled.div`
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  width: 28px;
+  height: 28px;
+  cursor: pointer;
+  border-radius: 25em;
+  position: absolute;
+  left: -4px;
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 
-const ContainerUsers = styled.div`
-  display: flex;
-  flex-direction: row;
-`;
+const AddUser = styled(CountUsers)`
+  margin-left: 20px;
+  position: relative;
 
-const AddUser = styled(CountUser)`
   .add {
     font-size: 12px;
   }
+`;
+
+const UserContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  min-width: 140px;
+`;
+
+const Users = styled.div`
+  padding: 0 0 0 10px;
+  display: flex;
+  flex-direction: row;
+  z-index: 10;
+`;
+
+const UserInfo = styled.div`
+  position: relative;
+  min-width: 70px;
+  display: flex;
+  justify-content: flex-end;
 `;
 
 class Index extends Component {
@@ -125,19 +125,17 @@ class Index extends Component {
           <Visibility />
           <EndWrapper />
         </BtnWrapper>
-        <UserWrapper>
-          <ContainerUsers>
-            <Users>
-              <User>
-                <UserImage src="/img/profile-avatar.png" />
-              </User>
-            </Users>
-            <CountUser>1</CountUser>
-          </ContainerUsers>
-          <AddUser>
-            <i className="fas fa-user-plus add" />
-          </AddUser>
-        </UserWrapper>
+        <UserContainer>
+          <Users>
+            <User />
+          </Users>
+          <UserInfo>
+            <CountUsers>1</CountUsers>
+            <AddUser>
+              <i className="fas fa-user-plus add" />
+            </AddUser>
+          </UserInfo>
+        </UserContainer>
       </ContainerBoard>
     );
   }
