@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import OptionBtn from "../OptionBtn";
 import onClickOutside from "react-onclickoutside";
 import styled from "styled-components";
+import OptionBtn from "../OptionBtn";
 import { trelloDefault } from "../../../utils";
 import Input from "../../../UI/Input";
 
