@@ -113,8 +113,8 @@ const TitleContainer = styled.div`
 `;
 
 class PopUpBoard extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       outsideClick: null
     };

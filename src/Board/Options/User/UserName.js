@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
-import { Container, Head, Title, Close } from "../../UI/TitlePopup";
-import Input from "../../UI/Input";
-import OptionBtn from "../../UI/OptionBtn";
-import Submit from "../../UI/Submit";
+import { Container, Head, Title, Close } from "../../../UI/TitlePopup";
+import Input from "../../../UI/Input";
+import OptionBtn from "../../../UI/OptionBtn";
+import Submit from "../../../UI/Submit";
 
 const ContainerUser = styled(Container)`
   min-width: 270px;

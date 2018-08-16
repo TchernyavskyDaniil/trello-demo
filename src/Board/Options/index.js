@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import styledMap from "styled-map";
-import UserName from "./UserName";
+import UserName from "./User/UserName";
 import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
-import User from "./User";
+import CountUsers from "./User/CountUsers";
+import User from "./User/User";
 import OptionBtn from "../../UI/OptionBtn";
 
 const ContainerBoard = styled.div`
@@ -40,7 +41,9 @@ const EndWrapper = styled.span`
   margin-right: 5px;
 `;
 
-const CountUsers = styled.div`
+const AddUser = styled.div`
+  margin-left: 20px;
+  position: relative;
   background-color: rgba(0, 0, 0, 0.2);
   color: white;
   display: flex;
@@ -51,20 +54,14 @@ const CountUsers = styled.div`
   height: 28px;
   cursor: pointer;
   border-radius: 25em;
-  position: absolute;
   left: -4px;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.3);
-  }
-`;
-
-const AddUser = styled(CountUsers)`
-  margin-left: 20px;
-  position: relative;
 
   .add {
     font-size: 12px;
+  }
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.3);
   }
 `;
 
@@ -92,7 +89,8 @@ class Index extends Component {
   constructor() {
     super();
     this.state = {
-      pin: false
+      pin: false,
+      img: "/img/profile-avatar.png"
     };
   }
 
@@ -101,7 +99,7 @@ class Index extends Component {
   };
 
   render() {
-    const { pin } = this.state;
+    const { pin, img } = this.state;
     return (
       <ContainerBoard>
         <BtnWrapper>
@@ -127,10 +125,10 @@ class Index extends Component {
         </BtnWrapper>
         <UserContainer>
           <Users>
-            <User />
+            <User img={img} />
           </Users>
           <UserInfo>
-            <CountUsers>1</CountUsers>
+            <CountUsers img={img} />
             <AddUser>
               <i className="fas fa-user-plus add" />
             </AddUser>
