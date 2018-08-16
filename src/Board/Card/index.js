@@ -2,8 +2,8 @@ import React from "react";
 import styled from "styled-components";
 
 const Container = styled.div`
-  margin: 8px;
-  width: 272px;
+  margin: 6px;
+  min-width: 280px;
   background: #e2e4e6;
   border-radius: 4px;
 `;
@@ -30,6 +30,7 @@ const Title = styled.textarea`
   padding: 3px 6px;
   margin: 2px;
   resize: none;
+  font-size: 14px;
   max-height: 256px;
   transition: background 85ms ease-in, border-color 85ms ease-in;
   width: 100%;
