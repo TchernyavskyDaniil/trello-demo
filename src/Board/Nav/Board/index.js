@@ -165,15 +165,15 @@ class Board extends Component {
             <Options>
               <Option>
                 {" "}
-                <BtnOpt>Тест тест</BtnOpt>{" "}
+                <BtnOpt>Создать новую доску ...</BtnOpt>{" "}
               </Option>
               <Option>
                 {" "}
-                <BtnOpt>Тест тест</BtnOpt>{" "}
+                <BtnOpt>Закрепить это меню</BtnOpt>{" "}
               </Option>
               <Option>
                 {" "}
-                <BtnOpt>Тест тест</BtnOpt>{" "}
+                <BtnOpt>Закрытые доски ...</BtnOpt>{" "}
               </Option>
             </Options>
           </Container>

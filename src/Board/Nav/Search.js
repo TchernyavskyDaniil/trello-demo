@@ -78,14 +78,21 @@ class Search extends Component {
     this.setState({ search: true });
   };
 
+  closeSearchMode = () => {
+    this.setState({ search: false });
+  };
+
   render() {
     const { search } = this.state;
     return (
       <React.Fragment>
         {search ? (
-          <SearchContainer onClick={this.toggleSearch} searchHover>
+          <SearchContainer searchHover>
             <SearchField type="text" searchHover />
-            <i className="fas fa-times icon-search" />
+            <i
+              className="fas fa-times icon-search close"
+              onClick={this.closeSearchMode}
+            />
           </SearchContainer>
         ) : (
           <SearchContainer onClick={this.toggleSearch}>

@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import CardActions from "./CardActions";
 
 const Container = styled.div`
   margin: 6px;
@@ -44,25 +45,6 @@ const Title = styled.textarea`
   }
 `;
 
-const Options = styled.button`
-  cursor: pointer;
-  height: 32px;
-  line-height: 32px;
-  width: 36px;
-  background: transparent;
-  font-size: 13px;
-  border-radius: 4px;
-  border-color: transparent;
-
-  .dotted {
-    color: #999;
-  }
-
-  &:hover {
-    background: #cdd2d4;
-  }
-`;
-
 const Body = styled.div`
   display: flex;
   flex-direction: row;
@@ -98,9 +80,7 @@ export default props => {
     <Container>
       <Header>
         <Title placeholder="Напишите что - то :)" defaultValue={title} />
-        <Options>
-          <i className="fas fa-ellipsis-h dotted" />
-        </Options>
+        <CardActions />
       </Header>
       <Body>
         <AddCard>
