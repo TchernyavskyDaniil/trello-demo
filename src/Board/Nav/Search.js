@@ -3,31 +3,6 @@ import styled from "styled-components";
 import styledMap from "styled-map";
 import onClickOutside from "react-onclickoutside";
 
-const SearchContainer = styled.div`
-  position: relative;
-
-  .icon-search {
-    display: inline-flex;
-    cursor: pointer;
-    align-items: center;
-    position: absolute;
-    height: 100%;
-    width: 20px;
-    padding: 0 4px;
-    right: 0;
-    color: ${styledMap({
-      default: "white",
-      searchHover: "rgba(0, 0, 0, 0.4)"
-    })};
-    
-    &:hover {
-      color: ${styledMap({
-        searchHover: "rgba(0,0,0,.7)",
-        default: "current"
-      })}
-  }
-`;
-
 const SearchField = styled.input`
   min-width: ${styledMap({
     default: "180px",
@@ -62,6 +37,39 @@ const SearchField = styled.input`
   }
 `;
 
+const SearchBtn = styled.button``;
+
+const SearchContainer = styled.div`
+  position: relative;
+
+  ${SearchBtn} {
+    display: inline-flex;
+    cursor: pointer;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 30px;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    padding: 0 4px;
+    right: 0;
+    
+    .icon-search {
+    color: ${styledMap({
+      default: "white",
+      searchHover: "rgba(0, 0, 0, 0.4)"
+    })};
+    
+      &:hover {
+        color: ${styledMap({
+          searchHover: "rgba(0,0,0,.7)",
+          default: "current"
+        })}
+    }
+  }
+`;
+
 class Search extends Component {
   constructor() {
     super();
@@ -89,15 +97,16 @@ class Search extends Component {
         {search ? (
           <SearchContainer searchHover>
             <SearchField type="text" searchHover />
-            <i
-              className="fas fa-times icon-search close"
-              onClick={this.closeSearchMode}
-            />
+            <SearchBtn onClick={this.closeSearchMode}>
+              <i className="fas fa-times icon-search close" />
+            </SearchBtn>
           </SearchContainer>
         ) : (
           <SearchContainer onClick={this.toggleSearch}>
             <SearchField type="text" />
-            <i className="fas fa-search icon-search" />
+            <SearchBtn>
+              <i className="fas fa-search icon-search" />
+            </SearchBtn>
           </SearchContainer>
         )}
       </React.Fragment>

@@ -41,7 +41,7 @@ class CardActions extends Component {
         <Options onClick={this.toggleOptions}>
           <i className="fas fa-ellipsis-h dotted" />
         </Options>
-        {options ? <h1> Hello </h1> : null}
+        {options ? <span> Доделать </span> : null}
       </div>
     );
   }
