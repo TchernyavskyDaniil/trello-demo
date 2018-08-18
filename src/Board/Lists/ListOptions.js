@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
-import AddNewCard from "./Cards/AddNewCard";
 import {
   Close,
   Container,
@@ -94,6 +93,7 @@ class ListOptions extends Component {
 
   render() {
     const { isActive } = this.state;
+    const { isSort } = this.props;
     return (
       <div>
         <Options onClick={this.toggleOptions}>
@@ -122,6 +122,14 @@ class ListOptions extends Component {
                   <ActionBtn>Подписаться</ActionBtn>
                 </ActionCard>
                 <CardHr />
+                {isSort ? (
+                  <React.Fragment>
+                    <ActionCard>
+                      <ActionBtn>Сортировать по ... </ActionBtn>
+                    </ActionCard>
+                    <CardHr />
+                  </React.Fragment>
+                ) : null}
                 <ActionCard>
                   <ActionBtn>Переместить все карточки списка</ActionBtn>
                 </ActionCard>

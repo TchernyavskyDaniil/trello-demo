@@ -8,26 +8,6 @@ const ListCard = styled.ul`
   padding: 0;
 `;
 
-const CardContainer = styled.li`
-  background-color: #fff;
-  border-radius: 3px;
-  box-shadow: 0 1px 0 #ccc;
-  cursor: pointer;
-  display: block;
-  max-width: 240px;
-  min-height: 20px;
-  position: relative;
-  text-decoration: none;
-  overflow: hidden;
-  padding: 6px 8px 2px;
-  z-index: 10;
-  margin: 8px auto 4px auto;
-
-  &:hover {
-    background-color: #edeff0;
-  }
-`;
-
 class Cards extends Component {
   constructor() {
     super();
@@ -54,9 +34,7 @@ class Cards extends Component {
     return (
       <ListCard>
         {cards.map(card => (
-          <CardContainer key={card.id}>
-            <Card>{card.title}</Card>
-          </CardContainer>
+          <Card key={card.id}>{card.title}</Card>
         ))}
       </ListCard>
     );

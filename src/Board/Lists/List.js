@@ -83,13 +83,14 @@ class List extends Component {
     this.state = {
       isActiveAdd: true,
       card: null,
-      id: null
+      id: null,
+      isSort: false
     };
   }
 
   addCard = newCard => {
     const { id } = this.state;
-    this.setState({ card: newCard, id: id + 1 });
+    this.setState({ card: newCard, id: id + 1, isSort: true });
   };
 
   toggleAdd = () => {
@@ -101,14 +102,14 @@ class List extends Component {
   };
 
   render() {
-    const { isActiveAdd, card, id } = this.state;
+    const { isActiveAdd, card, id, isSort } = this.state;
     const { title } = this.props;
 
     return (
       <Container>
         <Header>
           <Title placeholder="Напишите что - то :)" defaultValue={title} />
-          <ListOptions />
+          <ListOptions isSort={isSort} />
         </Header>
         <Cards card={card} id={id} />
         {isActiveAdd ? (
