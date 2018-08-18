@@ -25,7 +25,7 @@ class Cards extends Component {
 
   getNewCards = (card, id) => {
     this.setState(prevState => ({
-      cards: [...prevState.cards, { title: card, id: id }]
+      cards: [...prevState.cards, { title: card, key: id }]
     }));
   };
 
@@ -34,7 +34,7 @@ class Cards extends Component {
     return (
       <ListCard>
         {cards.map(card => (
-          <Card key={card.id}>{card.title}</Card>
+          <Card key={card.key}>{card.title}</Card>
         ))}
       </ListCard>
     );
