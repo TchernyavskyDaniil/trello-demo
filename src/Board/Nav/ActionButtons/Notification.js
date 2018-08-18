@@ -11,9 +11,9 @@ import {
   ActionTitle,
   Text
 } from "../../../UI/TitlePopup";
-import OptionBtn from "../OptionBtn";
+import OpacityBtn from "../../../UI/OpacityBtn";
 
-const NotificationBtn = styled(OptionBtn)``;
+const NotificationBtn = styled(OpacityBtn)``;
 
 const NotifContainer = styled(Container)`
   min-width: 410px;
@@ -119,42 +119,44 @@ class Notification extends Component {
   constructor() {
     super();
     this.state = {
-      notification: false,
-      msg: false,
-      checkNotifications: false
+      isActiveMain: false,
+      isActiveOptions: false,
+      isActiveAll: false
     };
   }
 
   checkNewNotifications = () => {
     this.setState(prevState => ({
-      checkNotifications: !prevState.checkNotifications
+      isActiveAll: !prevState.isActiveAll
     }));
   };
 
   handleClickOutside = () => {
-    this.setState({ notification: false });
+    this.setState({
+      isActiveMain: false,
+      isActiveAll: false,
+      isActiveOptions: false
+    });
   };
 
   toggleNotification = () => {
-    this.setState(prevState => ({ notification: !prevState.notification }));
+    this.setState(prevState => ({ isActiveMain: !prevState.isActiveMain }));
   };
 
   toggleMsg = () => {
-    this.setState(prevState => ({ msg: !prevState.msg }));
+    this.setState(prevState => ({
+      isActiveOptions: !prevState.isActiveOptions
+    }));
   };
 
   render() {
-    const { notification, msg, checkNotifications } = this.state;
+    const { isActiveMain, isActiveOptions, isActiveAll } = this.state;
     return (
-      <div
-        ref={node => {
-          this.node = node;
-        }}
-      >
+      <div>
         <NotificationBtn onClick={this.toggleNotification}>
           <i className="far fa-bell" />
         </NotificationBtn>
-        {notification ? (
+        {isActiveMain ? (
           <NotifContainer>
             <Head>
               <NotifTitle> Уведомления </NotifTitle>
@@ -164,7 +166,7 @@ class Notification extends Component {
               </Close>
             </Head>
             <Body>
-              {checkNotifications ? (
+              {isActiveAll ? (
                 <CheckAll onClick={this.checkNewNotifications}>
                   {" "}
                   Фильтр по непрочитанным{" "}
@@ -177,7 +179,7 @@ class Notification extends Component {
               )}
               <InfoMsg>
                 <Img src="https://a.trellocdn.com/prgb/dist/images/taco-sleep.0582d9f3bdb5060e7285.svg" />
-                {checkNotifications ? (
+                {isActiveAll ? (
                   <React.Fragment>
                     <Sub> Нет уведомлений </Sub>
                     <AllNotifications />
@@ -200,7 +202,7 @@ class Notification extends Component {
               <BtnNotif onClick={this.toggleMsg}>
                 Изменить частоту оповещений по электронной почте
               </BtnNotif>
-              {msg ? (
+              {isActiveOptions ? (
                 <ContainerMsg>
                   <Head>
                     <Title> Отправлять письма ... </Title>

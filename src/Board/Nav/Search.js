@@ -74,27 +74,27 @@ class Search extends Component {
   constructor() {
     super();
     this.state = {
-      search: false
+      isActive: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ search: false });
+    this.setState({ isActive: false });
   };
 
   toggleSearch = () => {
-    this.setState({ search: true });
+    this.setState({ isActive: true });
   };
 
   closeSearchMode = () => {
-    this.setState({ search: false });
+    this.setState({ isActive: false });
   };
 
   render() {
-    const { search } = this.state;
+    const { isActive } = this.state;
     return (
       <React.Fragment>
-        {search ? (
+        {isActive ? (
           <SearchContainer searchHover>
             <SearchField type="text" searchHover />
             <SearchBtn onClick={this.closeSearchMode}>

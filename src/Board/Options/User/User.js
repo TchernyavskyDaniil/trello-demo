@@ -42,25 +42,27 @@ class UserPreview extends Component {
   constructor() {
     super();
     this.state = {
-      userPreview: false
+      isActivePreview: false
     };
   }
 
   componentDidMount() {
     const { preview } = this.props;
-    this.setState({ userPreview: preview });
+    this.setState({ isActivePreview: preview });
   }
 
   handleClickOutside = () => {
-    this.setState({ userPreview: false });
+    this.setState({ isActivePreview: false });
   };
 
   showPreview = () => {
-    this.setState(prevState => ({ userPreview: !prevState.userPreview }));
+    this.setState(prevState => ({
+      isActivePreview: !prevState.isActivePreview
+    }));
   };
 
   render() {
-    const { userPreview } = this.state;
+    const { isActivePreview } = this.state;
     const { img } = this.props;
     return (
       <UserWrapper>
@@ -69,7 +71,9 @@ class UserPreview extends Component {
             <User onClick={this.showPreview}>
               <UserImage src={img} />
             </User>
-            {userPreview ? <UserModal img={img} preview={userPreview} /> : null}
+            {isActivePreview ? (
+              <UserModal img={img} preview={isActivePreview} />
+            ) : null}
           </ListUsers>
         </ContainerUsers>
       </UserWrapper>

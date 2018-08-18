@@ -186,8 +186,8 @@ class UserModal extends Component {
       newDesc: null,
       newNick: null,
       newAbout: null,
-      checkRoot: false,
-      userPreview: true
+      isActiveRoot: false,
+      isActivePreview: true
     };
   }
 
@@ -210,7 +210,7 @@ class UserModal extends Component {
   }
 
   getNewState = prop => {
-    this.setState({ userPreview: prop });
+    this.setState({ isActivePreview: prop });
   };
 
   getNewData = () => {
@@ -241,7 +241,9 @@ class UserModal extends Component {
   };
 
   getPreviewUser = () => {
-    this.setState(prevState => ({ userPreview: !prevState.userPreview }));
+    this.setState(prevState => ({
+      isActivePreview: !prevState.isActivePreview
+    }));
     this.closeParent();
   };
 
@@ -250,11 +252,11 @@ class UserModal extends Component {
   };
 
   changeRootUser = () => {
-    this.setState(prevState => ({ checkRoot: !prevState.checkRoot }));
+    this.setState(prevState => ({ isActiveRoot: !prevState.isActiveRoot }));
   };
 
   handleClickOutside = () => {
-    this.setState({ userPreview: false });
+    this.setState({ isActivePreview: false });
     this.closeParent();
   };
 
@@ -272,13 +274,13 @@ class UserModal extends Component {
       desc,
       nickname,
       aboutYou,
-      checkRoot,
-      userPreview
+      isActiveRoot,
+      isActivePreview
     } = this.state;
     const { img, countUser } = this.props;
     return (
       <div>
-        {userPreview ? (
+        {isActivePreview ? (
           <PreviewContainer countUser={countUser}>
             <UserInfo>
               <Avatar src={img} />
@@ -356,7 +358,7 @@ class UserModal extends Component {
                   <ActionTitle>Посмотреть действия на доске</ActionTitle>
                 </Action>
               </Actions>
-              {checkRoot ? (
+              {isActiveRoot ? (
                 <RootContainer>
                   <Head>
                     <Title>Изменение прав доступа</Title>

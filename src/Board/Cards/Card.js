@@ -4,7 +4,7 @@ import CardActions from "./CardActions";
 
 const Container = styled.div`
   margin: 6px;
-  min-width: 280px;
+  min-width: 275px;
   background: #e2e4e6;
   border-radius: 4px;
 `;

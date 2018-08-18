@@ -3,10 +3,10 @@ import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
 import { Link } from "react-router-dom";
 import { Container, Head, Title, Close } from "../../../UI/TitlePopup";
-import OptionBtn from "../OptionBtn";
+import OpacityBtn from "../../../UI/OpacityBtn";
 import { upgrade } from "../../../utils";
 
-const InfoBtn = styled(OptionBtn)``;
+const InfoBtn = styled(OpacityBtn)``;
 
 const InfoWrapper = styled(Container)`
   min-width: 360px;
@@ -89,26 +89,26 @@ class Info extends Component {
   constructor() {
     super();
     this.state = {
-      info: false
+      isActive: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ info: false });
+    this.setState({ isActive: false });
   };
 
   toggleInfo = () => {
-    this.setState(prevState => ({ info: !prevState.info }));
+    this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
   render() {
-    const { info } = this.state;
+    const { isActive } = this.state;
     return (
       <div>
         <InfoBtn onClick={this.toggleInfo}>
           <i className="fas fa-info" />
         </InfoBtn>
-        {info ? (
+        {isActive ? (
           <InfoWrapper>
             <Head>
               <Title> Информация </Title>

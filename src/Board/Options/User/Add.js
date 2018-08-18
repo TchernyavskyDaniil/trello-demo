@@ -74,26 +74,26 @@ class Add extends Component {
   constructor() {
     super();
     this.state = {
-      add: false
+      isActive: false
     };
   }
 
   getModal = () => {
-    this.setState(prevState => ({ add: !prevState.add }));
+    this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
   handleClickOutside = () => {
-    this.setState({ add: false });
+    this.setState({ isActive: false });
   };
 
   render() {
-    const { add } = this.state;
+    const { isActive } = this.state;
     return (
       <div>
         <AddUser onClick={this.getModal}>
           <i className="fas fa-user-plus add" />
         </AddUser>
-        {add ? (
+        {isActive ? (
           <AddContainer>
             <Head>
               <Title>Добавить участников</Title>

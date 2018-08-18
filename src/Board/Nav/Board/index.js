@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import onClickOutside from "react-onclickoutside";
 import styled from "styled-components";
-import OptionBtn from "../OptionBtn";
+import OpacityBtn from "../../../UI/OpacityBtn";
 import { trelloDefault } from "../../../utils";
 import Input from "../../../UI/Input";
 
@@ -117,32 +117,32 @@ class Board extends Component {
   constructor() {
     super();
     this.state = {
-      outsideClick: false,
-      hide: false
+      isOutside: false,
+      isEmpty: false
     };
   }
 
   toggleBoard = () => {
-    this.setState(prevState => ({ outsideClick: !prevState.outsideClick }));
+    this.setState(prevState => ({ isOutside: !prevState.isOutside }));
   };
 
   handleClickOutside = () => {
-    this.setState({ outsideClick: false });
+    this.setState({ isOutside: false });
   };
 
   hideBoard = () => {
-    this.setState(prevState => ({ hide: !prevState.hide }));
+    this.setState(prevState => ({ isEmpty: !prevState.isEmpty }));
   };
 
   render() {
-    const { outsideClick, hide } = this.state;
+    const { isOutside, isEmpty } = this.state;
     return (
       <div>
-        <OptionBtn onClick={this.toggleBoard}>
+        <OpacityBtn onClick={this.toggleBoard}>
           <i className="fas fa-clipboard-list icon-board" />
           Доски{" "}
-        </OptionBtn>
-        {outsideClick ? (
+        </OpacityBtn>
+        {isOutside ? (
           <Container>
             <Input placeholder="Поиск по названию" type="text" />
             <TypeBoard>
@@ -151,11 +151,17 @@ class Board extends Component {
                   <i className="far fa-star star" />
                   <Text>Тест чета</Text>
                 </TitleContainer>
-                <Hide onClick={this.hideBoard}>
-                  <i className="fas fa-minus minus" />
-                </Hide>
+                {isEmpty ? (
+                  <Hide onClick={this.hideBoard}>
+                    <i className="fas fa-plus plus" />
+                  </Hide>
+                ) : (
+                  <Hide onClick={this.hideBoard}>
+                    <i className="fas fa-minus minus" />
+                  </Hide>
+                )}
               </Title>
-              {hide ? null : (
+              {isEmpty ? null : (
                 <BoardContainer>
                   <Img src={trelloDefault} />
                   <Name>Текст доски заголовок</Name>

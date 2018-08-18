@@ -45,13 +45,16 @@ class CountUsers extends Component {
   constructor() {
     super();
     this.state = {
-      users: false,
+      isActive: false,
       preview: null
     };
   }
 
   getListUsers = () => {
-    this.setState(prevState => ({ users: !prevState.users, preview: false }));
+    this.setState(prevState => ({
+      isActive: !prevState.isActive,
+      preview: false
+    }));
   };
 
   getUserMenu = () => {
@@ -59,16 +62,16 @@ class CountUsers extends Component {
   };
 
   handleClickOutside = () => {
-    this.setState({ users: false });
+    this.setState({ isActive: false });
   };
 
   render() {
-    const { users, preview } = this.state;
+    const { isActive, preview } = this.state;
     const { img } = this.props;
     return (
       <div>
         <Count onClick={this.getListUsers}>1</Count>
-        {users ? (
+        {isActive ? (
           <ContainerCount>
             <Head>
               <Title>Участники доски</Title>

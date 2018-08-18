@@ -11,34 +11,34 @@ import {
   ActionTitle,
   Text
 } from "../../../UI/TitlePopup";
-import OptionBtn from "../OptionBtn";
+import OpacityBtn from "../../../UI/OpacityBtn";
 
-const AddBtn = styled(OptionBtn)``;
+const AddBtn = styled(OpacityBtn)``;
 
 class Add extends Component {
   constructor() {
     super();
     this.state = {
-      add: false
+      isActive: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ add: false });
+    this.setState({ isActive: false });
   };
 
   toggleAdd = () => {
-    this.setState(prevState => ({ add: !prevState.add }));
+    this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
   render() {
-    const { add } = this.state;
+    const { isActive } = this.state;
     return (
       <div>
         <AddBtn onClick={this.toggleAdd}>
           <i className="fas fa-plus" />
         </AddBtn>
-        {add ? (
+        {isActive ? (
           <Container>
             <Head>
               <Title> Создать </Title>

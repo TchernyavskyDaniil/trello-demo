@@ -39,28 +39,24 @@ class User extends Component {
   constructor() {
     super();
     this.state = {
-      user: false
+      isActiveUser: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ user: false });
+    this.setState({ isActiveUser: false });
   };
 
   toggleUser = () => {
-    this.setState(prevState => ({ user: !prevState.user }));
+    this.setState(prevState => ({ isActiveUser: !prevState.isActiveUser }));
   };
 
   render() {
-    const { user } = this.state;
+    const { isActiveUser } = this.state;
     return (
-      <div
-        ref={node => {
-          this.node = node;
-        }}
-      >
+      <div>
         <Avatar src="/img/profile-avatar.png" onClick={this.toggleUser} />
-        {user ? (
+        {isActiveUser ? (
           <UserContainer>
             <Head>
               <Title> Name your profile here </Title>
