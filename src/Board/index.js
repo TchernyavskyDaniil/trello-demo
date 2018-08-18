@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { trelloDefault } from "../utils";
 import Index from "./Options";
 import Nav from "./Nav";
-import Cards from "./Cards";
+import Lists from "./Lists";
 
 const BoardContainer = styled.div`
   background-image: url(${trelloDefault});
@@ -23,7 +23,7 @@ export default () => (
     <Nav />
     <BoardContainer>
       <Index />
-      <Cards />
+      <Lists />
     </BoardContainer>
   </BoardWrapper>
 );

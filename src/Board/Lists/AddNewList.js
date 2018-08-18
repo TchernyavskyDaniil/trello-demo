@@ -75,7 +75,7 @@ const EmptyField = styled.span`
   margin: 0 6px;
 `;
 
-class AddNewCard extends Component {
+class AddNewList extends Component {
   constructor() {
     super();
     this.state = {
@@ -97,14 +97,14 @@ class AddNewCard extends Component {
 
   addNewList = () => {
     const { newId, newValue } = this.state;
-    const { cards, getNewCards } = this.props;
+    const { lists, getNewLists } = this.props;
     if (newValue === null || newValue.length < 1) {
       this.setState({ isEmpty: true });
     } else {
-      const newCards = cards;
-      newCards[newId - 1] = { id: newId, title: newValue };
+      const newLists = lists;
+      newLists[newId - 1] = { id: newId, title: newValue };
       this.setState({ newValue: null, isEmpty: false });
-      getNewCards(newCards);
+      getNewLists(newLists);
     }
   };
 
@@ -149,4 +149,4 @@ class AddNewCard extends Component {
   }
 }
 
-export default onClickOutside(AddNewCard);
+export default onClickOutside(AddNewList);

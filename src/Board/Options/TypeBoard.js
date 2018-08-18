@@ -66,16 +66,16 @@ class TypeBoard extends Component {
   constructor() {
     super();
     this.state = {
-      type: false
+      isActive: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ type: false });
+    this.setState({ isActive: false });
   };
 
   typeToggle = () => {
-    this.setState(prevState => ({ type: !prevState.type }));
+    this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
   submitType = () => {
@@ -84,11 +84,11 @@ class TypeBoard extends Component {
   };
 
   render() {
-    const { type } = this.state;
+    const { isActive } = this.state;
     return (
       <div>
         <TypeInfo onClick={this.typeToggle}> Персональная </TypeInfo>
-        {type ? (
+        {isActive ? (
           <ContainerType>
             <Head>
               <Title> Добавить в команду </Title>

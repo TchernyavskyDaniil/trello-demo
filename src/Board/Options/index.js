@@ -67,22 +67,22 @@ class Index extends Component {
   constructor() {
     super();
     this.state = {
-      pin: false,
+      isActivePin: false,
       img: "/img/profile-avatar.png"
     };
   }
 
   getPin = () => {
-    this.setState(prevState => ({ pin: !prevState.pin }));
+    this.setState(prevState => ({ isActivePin: !prevState.isActivePin }));
   };
 
   render() {
-    const { pin, img } = this.state;
+    const { isActivePin, img } = this.state;
     return (
       <ContainerBoard>
         <BtnWrapper>
           <UserName />
-          {pin ? (
+          {isActivePin ? (
             <Pin onClick={this.getPin} pinned>
               <i className="far fa-star star" />
             </Pin>

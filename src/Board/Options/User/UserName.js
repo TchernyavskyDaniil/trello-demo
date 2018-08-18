@@ -34,17 +34,17 @@ class UserName extends Component {
   constructor() {
     super();
     this.state = {
-      user: false,
+      isActive: false,
       userName: "Tchernayvsky"
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ user: false });
+    this.setState({ isActive: false });
   };
 
   toggleUser = () => {
-    this.setState(prevState => ({ user: !prevState.user }));
+    this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
   updateInput = event => {
@@ -57,11 +57,11 @@ class UserName extends Component {
   };
 
   render() {
-    const { user, userName } = this.state;
+    const { isActive, userName } = this.state;
     return (
       <div>
         <OptionBtn onClick={this.toggleUser}> {userName} </OptionBtn>
-        {user ? (
+        {isActive ? (
           <ContainerUser>
             <Head>
               <Title> Переименование доски </Title>

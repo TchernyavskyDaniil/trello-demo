@@ -59,20 +59,20 @@ class Visibility extends Component {
   constructor() {
     super();
     this.state = {
-      visible: false
+      isVisible: false
     };
   }
 
   handleClickOutside = () => {
-    this.setState({ visible: false });
+    this.setState({ isVisible: false });
   };
 
   toggleVisible = () => {
-    this.setState(prevState => ({ visible: !prevState.visible }));
+    this.setState(prevState => ({ isVisible: !prevState.isVisible }));
   };
 
   render() {
-    const { visible } = this.state;
+    const { isVisible } = this.state;
     return (
       <div>
         <TypePrivacy onClick={this.toggleVisible}>
@@ -80,7 +80,7 @@ class Visibility extends Component {
           <i className="fas fa-lock lock" />
           Приватная{" "}
         </TypePrivacy>
-        {visible ? (
+        {isVisible ? (
           <VisibleContainer>
             <Head>
               <Title> Изменение видимости </Title>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Card from "./Card";
-import AddNewCard from "./AddNewCard";
+import List from "./List";
+import AddNewList from "./AddNewList";
 
 const ListCard = styled.div`
   display: flex;
@@ -10,11 +10,11 @@ const ListCard = styled.div`
   flex-wrap: wrap;
 `;
 
-class Cards extends Component {
+class Lists extends Component {
   constructor() {
     super();
     this.state = {
-      cards: [
+      lists: [
         {
           id: 1,
           title: "Делаем шо - та"
@@ -35,25 +35,25 @@ class Cards extends Component {
     };
   }
 
-  getNewCards = newCards => {
-    this.setState({ cards: newCards });
+  getNewLists = newLists => {
+    this.setState({ lists: newLists });
   };
 
   render() {
-    const { cards } = this.state;
+    const { lists } = this.state;
     return (
       <ListCard>
-        {cards.map(card => (
-          <Card title={card.title} key={card.id} />
+        {lists.map(list => (
+          <List title={list.title} key={list.id} />
         ))}
-        <AddNewCard
-          length={cards.length}
-          cards={cards}
-          getNewCards={this.getNewCards}
+        <AddNewList
+          length={lists.length}
+          lists={lists}
+          getNewLists={this.getNewLists}
         />
       </ListCard>
     );
   }
 }
 
-export default Cards;
+export default Lists;
