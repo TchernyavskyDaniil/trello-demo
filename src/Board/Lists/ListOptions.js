@@ -87,13 +87,19 @@ class ListOptions extends Component {
     this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
+  addNewCard = () => {
+    const { toggle } = this.props;
+    this.setState({ isActive: false });
+    toggle(true);
+  };
+
   handleClickOutside = () => {
     this.setState({ isActive: false });
   };
 
   render() {
     const { isActive } = this.state;
-    const { isSort, toggle } = this.props;
+    const { isSort } = this.props;
     return (
       <div>
         <Options onClick={this.toggleOptions}>
@@ -109,7 +115,7 @@ class ListOptions extends Component {
                 </Close>
               </Head>
               <Body>
-                <ActionCard onClick={toggle}>
+                <ActionCard onClick={this.addNewCard}>
                   <ActionBtn>Добавить карточку</ActionBtn>
                 </ActionCard>
                 <ActionCard>

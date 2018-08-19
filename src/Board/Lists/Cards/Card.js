@@ -29,17 +29,17 @@ const Edit = styled.button`
   background-color: transparent;
   cursor: pointer;
   position: absolute;
-    font-size: 12px;
-    right: 4px;
-    top: 4px;
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    
-    .pen {
-      display: none;
-      color: #ccc;
-    }
+  font-size: 12px;
+  right: 4px;
+  top: 4px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+
+  .pen {
+    display: none;
+    color: #ccc;
+  }
 `;
 
 const CardContainer = styled.li`

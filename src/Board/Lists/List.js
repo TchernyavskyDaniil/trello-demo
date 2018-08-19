@@ -93,8 +93,12 @@ class List extends Component {
     this.setState({ card: newCard, id: id + 1, isSort: true });
   };
 
-  toggleAdd = () => {
-    this.setState(prevState => ({ isActiveAdd: !prevState.isActiveAdd }));
+  toggleAdd = bool => {
+    if (bool) {
+      this.setState({ isActiveAdd: false });
+    } else {
+      this.setState(prevState => ({ isActiveAdd: !prevState.isActiveAdd }));
+    }
   };
 
   handleClickOutside = () => {

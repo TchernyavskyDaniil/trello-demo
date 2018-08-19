@@ -4,6 +4,7 @@ import styledMap from "styled-map";
 import UserName from "./User/UserName";
 import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
+import Menu from "./Menu";
 import CountUsers from "./User/CountUsers";
 import User from "./User/User";
 import Add from "./User/Add";
@@ -110,6 +111,7 @@ class Index extends Component {
           </UserInfo>
           <Add />
         </UserContainer>
+        <Menu />
       </ContainerBoard>
     );
   }

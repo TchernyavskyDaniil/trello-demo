@@ -47,6 +47,8 @@ export const Close = styled.button`
 `;
 
 export const Container = styled.div`
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
   position: absolute;
   min-width: 280px;
   padding: 10px;
