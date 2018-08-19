@@ -15,7 +15,7 @@ const AddCard = styled.div`
   justify-content: center;
   font-size: 14px;
   border-radius: 4px;
-  min-width: 250px;
+  min-width: 264px;
   align-items: center;
   transition: background 85ms ease-in, opacity 40ms ease-in,
     border-color 85ms ease-in;
@@ -81,15 +81,29 @@ class AddNewList extends Component {
     this.state = {
       isActiveAdd: false,
       newId: null,
-      newValue: null,
+      newValue: "",
       isEmpty: false
     };
   }
 
-  getValueList = event => {
+  componentDidMount() {
     const { length } = this.props;
+    this.getNewId(length);
+  }
+
+  componentDidUpdate(prevProps) {
+    const { length } = this.props;
+    if (prevProps.length !== length) {
+      this.getNewId(length);
+    }
+  }
+
+  getNewId = id => {
+    this.setState({ newId: id + 1, newValue: "" });
+  };
+
+  getValueList = event => {
     this.setState({
-      newId: length + 1,
       newValue: event.target.value,
       isEmpty: false
     });
@@ -98,12 +112,12 @@ class AddNewList extends Component {
   addNewList = () => {
     const { newId, newValue } = this.state;
     const { lists, getNewLists } = this.props;
-    if (newValue === null || newValue.length < 1) {
+    if (newValue.length < 1) {
       this.setState({ isEmpty: true });
     } else {
       const newLists = lists;
       newLists[newId - 1] = { id: newId, title: newValue };
-      this.setState({ newValue: null, isEmpty: false });
+      this.setState({ isEmpty: false });
       getNewLists(newLists);
     }
   };
@@ -127,7 +141,7 @@ class AddNewList extends Component {
           <Container>
             <InputAdd
               placeholder="Введите заголовок списка"
-              defaultValue={newValue}
+              value={newValue}
               onChange={this.getValueList}
               required
             />

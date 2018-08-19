@@ -32,8 +32,8 @@ const Options = styled.button`
 
 const ActionsContainer = styled(Container)`
   top: 10px;
-  left: 0;
-  min-width: 300px;
+  left: -20px;
+  min-width: 290px;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
 `;
 
@@ -110,7 +110,7 @@ class ListOptions extends Component {
             <ActionsContainer>
               <Head>
                 <Title>Действия со списком</Title>
-                <Close>
+                <Close onClick={this.toggleOptions}>
                   <i className="fas fa-times close" />
                 </Close>
               </Head>

@@ -7,7 +7,22 @@ const ListCard = styled.div`
   display: flex;
   flex-direction: row;
   align-items: flex-start;
-  flex-wrap: wrap;
+  overflow-x: auto;
+  overflow-y: hidden;
+  flex-wrap: nowrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+  height: 95%;
+`;
+
+const ContainerCard = styled.div`
+  position: relative;
+  height: 100%;
 `;
 
 class Lists extends Component {
@@ -35,23 +50,43 @@ class Lists extends Component {
     };
   }
 
+  componentDidUpdate(prevState) {
+    const { lists } = this.state;
+    if (prevState.lists !== lists) {
+      this.getLastPosition();
+    }
+  }
+
   getNewLists = newLists => {
     this.setState({ lists: newLists });
+  };
+
+  getLastPosition = () => {
+    this.node.scrollIntoView({ behavior: "auto", block: "end" });
   };
 
   render() {
     const { lists } = this.state;
     return (
-      <ListCard>
-        {lists.map(list => (
-          <List title={list.title} key={list.id} />
-        ))}
-        <AddNewList
-          length={lists.length}
-          lists={lists}
-          getNewLists={this.getNewLists}
-        />
-      </ListCard>
+      <ContainerCard>
+        <ListCard>
+          {lists.map(list => (
+            <div
+              ref={node => {
+                this.node = node;
+              }}
+              key={list.id}
+            >
+              <List title={list.title} />
+            </div>
+          ))}
+          <AddNewList
+            length={lists.length}
+            lists={lists}
+            getNewLists={this.getNewLists}
+          />
+        </ListCard>
+      </ContainerCard>
     );
   }
 }
