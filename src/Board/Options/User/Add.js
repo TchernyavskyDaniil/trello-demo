@@ -78,7 +78,7 @@ class Add extends Component {
     };
   }
 
-  getModal = () => {
+  toggleModal = () => {
     this.setState(prevState => ({ isActive: !prevState.isActive }));
   };
 
@@ -90,14 +90,14 @@ class Add extends Component {
     const { isActive } = this.state;
     return (
       <div>
-        <AddUser onClick={this.getModal}>
+        <AddUser onClick={this.toggleModal}>
           <i className="fas fa-user-plus add" />
         </AddUser>
         {isActive ? (
           <AddContainer>
             <Head>
               <Title>Добавить участников</Title>
-              <Close onClick={this.getModal}>
+              <Close onClick={this.toggleModal}>
                 <i className="fas fa-times close" />{" "}
               </Close>
             </Head>

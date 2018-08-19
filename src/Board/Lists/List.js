@@ -82,15 +82,17 @@ class List extends Component {
     super();
     this.state = {
       isActiveAdd: true,
-      card: null,
-      id: null,
+      cards: [],
       isSort: false
     };
   }
 
   addCard = newCard => {
-    const { id } = this.state;
-    this.setState({ card: newCard, id: id + 1, isSort: true });
+    const { cards } = this.state;
+    this.setState(prevState => ({
+      cards: [...prevState.cards, { title: newCard, id: cards.length + 1 }],
+      isSort: true
+    }));
   };
 
   toggleAdd = bool => {
@@ -106,7 +108,7 @@ class List extends Component {
   };
 
   render() {
-    const { isActiveAdd, card, id, isSort } = this.state;
+    const { isActiveAdd, cards, isSort } = this.state;
     const { title } = this.props;
 
     return (
@@ -115,7 +117,7 @@ class List extends Component {
           <Title placeholder="Напишите что - то :)" defaultValue={title} />
           <ListOptions isSort={isSort} toggle={this.toggleAdd} />
         </Header>
-        <Cards card={card} id={id} />
+        <Cards cards={cards} />
         {isActiveAdd ? (
           <Body onClick={this.toggleAdd}>
             <AddCard>

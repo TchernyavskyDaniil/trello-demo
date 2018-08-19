@@ -152,25 +152,25 @@ class Card extends Component {
 
   componentDidMount() {
     const { text } = this.props;
-    this.getNewState(text);
+    this.setNewState(text);
   }
 
   componentDidUpdate(prevProps) {
     const { text } = this.props;
     if (prevProps.text !== text) {
-      this.getNewState(text);
+      this.setNewState(text);
     }
   }
 
-  getNewState = prop => {
+  setNewState = prop => {
     this.setState({ text: prop, newText: prop });
   };
 
-  getNewValue = event => {
+  setNewValue = event => {
     this.setState({ newText: event.target.value });
   };
 
-  getResult = () => {
+  setResult = () => {
     const { newText } = this.state;
     this.setState({ text: newText });
   };
@@ -190,10 +190,10 @@ class Card extends Component {
                 <Modal>
                   <ContainerModal>
                     <ModalText>
-                      <EditText onChange={this.getNewValue}>{text}</EditText>
+                      <EditText onChange={this.setNewValue}>{text}</EditText>
                     </ModalText>
                     <ModalBtns>
-                      <SubmitEdit onClick={this.getResult}>
+                      <SubmitEdit onClick={this.setResult}>
                         {" "}
                         Сохранить{" "}
                       </SubmitEdit>

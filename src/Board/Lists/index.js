@@ -53,15 +53,18 @@ class Lists extends Component {
   componentDidUpdate(prevState) {
     const { lists } = this.state;
     if (prevState.lists !== lists) {
-      this.getLastPosition();
+      this.scrollToLastPosition();
     }
   }
 
-  getNewLists = newLists => {
+  setNewList = newValue => {
+    const { lists } = this.state;
+    const newLists = lists;
+    newLists[newLists.length] = { id: newLists.length + 1, title: newValue };
     this.setState({ lists: newLists });
   };
 
-  getLastPosition = () => {
+  scrollToLastPosition = () => {
     this.node.scrollIntoView({ behavior: "auto", block: "end" });
   };
 
@@ -80,11 +83,7 @@ class Lists extends Component {
               <List title={list.title} />
             </div>
           ))}
-          <AddNewList
-            length={lists.length}
-            lists={lists}
-            getNewLists={this.getNewLists}
-          />
+          <AddNewList setNewList={this.setNewList} />
         </ListCard>
       </ContainerCard>
     );

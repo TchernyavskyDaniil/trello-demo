@@ -76,15 +76,15 @@ class AddNewCard extends Component {
   componentDidUpdate(prevProps) {
     const { isActive } = this.props;
     if (prevProps.isActive !== isActive) {
-      this.getNewState(isActive);
+      this.setNewState(isActive);
     }
   }
 
-  getNewState = prop => {
+  setNewState = prop => {
     this.setState({ isActiveAdd: prop });
   };
 
-  getNewValue = event => {
+  setNewValue = event => {
     this.setState({ value: event.target.value });
   };
 
@@ -107,7 +107,7 @@ class AddNewCard extends Component {
           <BodyAdd>
             <InputAdd
               placeholder="Ввести заголовок для этой карточки"
-              onChange={this.getNewValue}
+              onChange={this.setNewValue}
               defaultValue={value}
             />
             <Footer>

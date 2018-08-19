@@ -203,17 +203,17 @@ class UserModal extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (!nextProps.preview) {
-      this.getNewState(true);
+      this.setNewState(true);
     } else {
-      this.getNewState(nextProps.preview);
+      this.setNewState(nextProps.preview);
     }
   }
 
-  getNewState = prop => {
+  setNewState = prop => {
     this.setState({ isActivePreview: prop });
   };
 
-  getNewData = () => {
+  setNewData = () => {
     const { newName, newDesc, newNick, newAbout } = this.state;
     this.setState({
       name: newName,
@@ -224,23 +224,23 @@ class UserModal extends Component {
     });
   };
 
-  getNewName = event => {
+  setNewName = event => {
     this.setState({ newName: event.target.value });
   };
 
-  getNewDesc = event => {
+  setNewDesc = event => {
     this.setState({ newDesc: event.target.value });
   };
 
-  getNewNick = event => {
+  setNewNick = event => {
     this.setState({ newNick: event.target.value });
   };
 
-  getNewAbout = event => {
+  setNewAbout = event => {
     this.setState({ newAbout: event.target.value });
   };
 
-  getPreviewUser = () => {
+  togglePreviewUser = () => {
     this.setState(prevState => ({
       isActivePreview: !prevState.isActivePreview
     }));
@@ -287,7 +287,7 @@ class UserModal extends Component {
               <ContainerInfo>
                 <NameWrapper>
                   <Name to="/tchernyavsky"> {name} </Name>
-                  <CloseBtn onClick={this.getPreviewUser}>
+                  <CloseBtn onClick={this.togglePreviewUser}>
                     <i className="fas fa-times close" />{" "}
                   </CloseBtn>
                 </NameWrapper>
@@ -310,31 +310,31 @@ class UserModal extends Component {
                         <Text>Полное имя</Text>
                         <InputEdit
                           defaultValue={name}
-                          onChange={this.getNewName}
+                          onChange={this.setNewName}
                         />
                       </InputContainer>
                       <InputContainer>
                         <Text>Инициалы</Text>
                         <InputEdit
                           defaultValue={desc}
-                          onChange={this.getNewDesc}
+                          onChange={this.setNewDesc}
                         />
                       </InputContainer>
                       <InputContainer>
                         <Text>Имя пользователя</Text>
                         <InputEdit
                           defaultValue={nickname}
-                          onChange={this.getNewNick}
+                          onChange={this.setNewNick}
                         />
                       </InputContainer>
                       <InputContainer>
                         <Text>О себе</Text>
                         <AboutYouArea
                           defaultValue={aboutYou}
-                          onChange={this.getNewAbout}
+                          onChange={this.setNewAbout}
                         />
                       </InputContainer>
-                      <Submit onClick={this.getNewData}> Сохранить </Submit>
+                      <Submit onClick={this.setNewData}> Сохранить </Submit>
                     </BodyInputs>
                     <Hr />
                     <Desc>

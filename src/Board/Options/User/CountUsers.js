@@ -50,14 +50,14 @@ class CountUsers extends Component {
     };
   }
 
-  getListUsers = () => {
+  toggleListUsers = () => {
     this.setState(prevState => ({
       isActive: !prevState.isActive,
       preview: false
     }));
   };
 
-  getUserMenu = () => {
+  toggleUserMenu = () => {
     this.setState(prevState => ({ preview: !prevState.preview }));
   };
 
@@ -70,23 +70,23 @@ class CountUsers extends Component {
     const { img } = this.props;
     return (
       <div>
-        <Count onClick={this.getListUsers}>1</Count>
+        <Count onClick={this.toggleListUsers}>1</Count>
         {isActive ? (
           <ContainerCount>
             <Head>
               <Title>Участники доски</Title>
-              <Close onClick={this.getListUsers}>
+              <Close onClick={this.toggleListUsers}>
                 <i className="fas fa-times close" />{" "}
               </Close>
             </Head>
             <Body>
-              <UserPreview src={img} onClick={this.getUserMenu} />
+              <UserPreview src={img} onClick={this.toggleUserMenu} />
             </Body>
             {preview ? (
               <UserModal
                 img={img}
                 preview={preview}
-                close={this.getUserMenu}
+                close={this.toggleUserMenu}
                 countUser
               />
             ) : null}

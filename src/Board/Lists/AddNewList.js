@@ -80,29 +80,12 @@ class AddNewList extends Component {
     super();
     this.state = {
       isActiveAdd: false,
-      newId: null,
       newValue: "",
       isEmpty: false
     };
   }
 
-  componentDidMount() {
-    const { length } = this.props;
-    this.getNewId(length);
-  }
-
-  componentDidUpdate(prevProps) {
-    const { length } = this.props;
-    if (prevProps.length !== length) {
-      this.getNewId(length);
-    }
-  }
-
-  getNewId = id => {
-    this.setState({ newId: id + 1, newValue: "" });
-  };
-
-  getValueList = event => {
+  setValueList = event => {
     this.setState({
       newValue: event.target.value,
       isEmpty: false
@@ -110,15 +93,13 @@ class AddNewList extends Component {
   };
 
   addNewList = () => {
-    const { newId, newValue } = this.state;
-    const { lists, getNewLists } = this.props;
+    const { newValue } = this.state;
+    const { setNewList } = this.props;
     if (newValue.length < 1) {
       this.setState({ isEmpty: true });
     } else {
-      const newLists = lists;
-      newLists[newId - 1] = { id: newId, title: newValue };
-      this.setState({ isEmpty: false });
-      getNewLists(newLists);
+      this.setState({ newValue: "" });
+      setNewList(newValue);
     }
   };
 
@@ -142,7 +123,7 @@ class AddNewList extends Component {
             <InputAdd
               placeholder="Введите заголовок списка"
               value={newValue}
-              onChange={this.getValueList}
+              onChange={this.setValueList}
               required
             />
             {isEmpty ? <EmptyField> Заполните поле! </EmptyField> : null}

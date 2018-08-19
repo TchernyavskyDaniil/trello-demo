@@ -73,7 +73,7 @@ class Index extends Component {
     };
   }
 
-  getPin = () => {
+  setPin = () => {
     this.setState(prevState => ({ isActivePin: !prevState.isActivePin }));
   };
 
@@ -84,11 +84,11 @@ class Index extends Component {
         <BtnWrapper>
           <UserName />
           {isActivePin ? (
-            <Pin onClick={this.getPin} pinned>
+            <Pin onClick={this.setPin} pinned>
               <i className="far fa-star star" />
             </Pin>
           ) : (
-            <Pin onClick={this.getPin}>
+            <Pin onClick={this.setPin}>
               <i className="far fa-star star" />
             </Pin>
           )}
