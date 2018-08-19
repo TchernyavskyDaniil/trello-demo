@@ -34,7 +34,7 @@ class Cards extends Component {
     return (
       <ListCard>
         {cards.map(card => (
-          <Card key={card.key}>{card.title}</Card>
+          <Card key={card.key} text={card.title} />
         ))}
       </ListCard>
     );

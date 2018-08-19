@@ -93,7 +93,7 @@ class ListOptions extends Component {
 
   render() {
     const { isActive } = this.state;
-    const { isSort } = this.props;
+    const { isSort, toggle } = this.props;
     return (
       <div>
         <Options onClick={this.toggleOptions}>
@@ -109,7 +109,7 @@ class ListOptions extends Component {
                 </Close>
               </Head>
               <Body>
-                <ActionCard>
+                <ActionCard onClick={toggle}>
                   <ActionBtn>Добавить карточку</ActionBtn>
                 </ActionCard>
                 <ActionCard>
