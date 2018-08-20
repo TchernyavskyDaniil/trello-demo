@@ -65,6 +65,7 @@ const TitleMenu = styled(Title)`
 
 const Text = styled.span`
   color: rgba(0, 0, 0, 0.7);
+  user-select: none;
 `;
 
 const MenuActions = styled(Actions)`

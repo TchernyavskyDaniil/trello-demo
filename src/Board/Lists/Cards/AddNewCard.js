@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import CardOptions from "./CardOptions";
 import { Close } from "../../../UI/TitlePopup";
 import Submit from "../../../UI/Submit";
 
@@ -43,17 +44,6 @@ const Footer = styled.div`
 
 const CloseAdd = styled(Close)`
   position: relative;
-`;
-
-const Options = styled(CloseAdd)`
-  position: absolute;
-  right: -5px;
-
-  &:hover {
-    .dotted {
-      color: #4d4d4d;
-    }
-  }
 `;
 
 const Buttons = styled.div`
@@ -119,9 +109,7 @@ class AddNewCard extends Component {
                 <CloseAdd onClick={this.toggleAdd}>
                   <i className="fas fa-times close" />
                 </CloseAdd>
-                <Options>
-                  <i className="fas fa-ellipsis-h dotted" />
-                </Options>
+                <CardOptions />
               </Buttons>
             </Footer>
           </BodyAdd>

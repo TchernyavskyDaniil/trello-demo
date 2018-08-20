@@ -17,6 +17,7 @@ const Avatar = styled.img`
   width: 32px;
   border-radius: 25em;
   cursor: pointer;
+  user-select: none;
 `;
 
 const UserContainer = styled(Container)`

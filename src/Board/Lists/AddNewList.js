@@ -30,6 +30,7 @@ const Title = styled.span`
   padding: 7px;
   color: hsla(0, 0%, 100%, 0.7);
   transition: color 85ms ease-in;
+  user-select: none;
 `;
 
 const Container = styled.div`

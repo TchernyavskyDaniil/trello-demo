@@ -17,7 +17,7 @@ const Options = styled.button`
   line-height: 32px;
   width: 36px;
   background: transparent;
-  font-size: 13px;
+  font-size: 16px;
   border-radius: 4px;
   border-color: transparent;
 

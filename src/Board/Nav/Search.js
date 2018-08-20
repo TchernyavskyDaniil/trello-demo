@@ -4,6 +4,7 @@ import styledMap from "styled-map";
 import onClickOutside from "react-onclickoutside";
 
 const SearchField = styled.input`
+  transition: width 0.15s;
   min-width: ${styledMap({
     default: "180px",
     searchHover: "400px"

@@ -34,6 +34,7 @@ export const Close = styled.button`
   z-index: 10;
   width: 30px;
   padding: 0;
+  font-size: 16px;
 
   &:hover {
     .close {

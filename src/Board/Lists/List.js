@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
+import TextareaAutosize from "react-autosize-textarea";
 import ListOptions from "./ListOptions";
 import Cards from "./Cards";
 import AddNewCard from "./Cards/AddNewCard";
@@ -15,12 +16,12 @@ const Container = styled.div`
 const Header = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: center;
   padding: 5px;
   justify-content: space-between;
+  align-items: flex-start;
 `;
 
-const Title = styled.textarea`
+const Title = styled(TextareaAutosize)`
   overflow: hidden;
   word-wrap: break-word;
   line-height: 20px;
@@ -69,6 +70,7 @@ const AddCard = styled.button`
   background: transparent;
   font-size: 14px;
   cursor: pointer;
+  user-select: none;
 
   &:focus {
     outline: none;
