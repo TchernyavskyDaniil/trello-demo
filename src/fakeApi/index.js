@@ -15,6 +15,5 @@ export const setData = async (key, data) => {
   } catch (e) {
     await localStorage.setItem(key, "Can not save data");
     await localStorage.setItem("errors", "oops, we can not save data");
-    console.error(e);
   }
 };

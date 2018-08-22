@@ -97,7 +97,11 @@ class Lists extends Component {
               }}
               key={list.id}
             >
-              <List title={list.title} id={list.id} updateData={this.updateData} />
+              <List
+                title={list.title}
+                id={list.id}
+                updateData={this.updateData}
+              />
             </div>
           ))}
           <AddNewList setNewList={this.setNewList} />

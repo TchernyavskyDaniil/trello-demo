@@ -117,7 +117,12 @@ class List extends Component {
       <Container>
         <Header>
           <Title placeholder="Напишите что - то :)" defaultValue={title} />
-          <ListOptions isSort={isSort} toggle={this.toggleAdd} id={id} updateData={updateData} />
+          <ListOptions
+            isSort={isSort}
+            toggle={this.toggleAdd}
+            id={id}
+            updateData={updateData}
+          />
         </Header>
         <Cards cards={cards} />
         {isActiveAdd ? (
