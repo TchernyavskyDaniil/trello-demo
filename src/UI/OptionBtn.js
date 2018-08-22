@@ -6,6 +6,8 @@ const OptionBtn = styled.button`
   font-size: 18px;
   font-weight: 700;
   line-height: 32px;
+  min-height: 20px;
+  min-width: 20px;
   background-color: transparent;
   color: rgba(0, 0, 0, 0.7);
   border-radius: 4px;

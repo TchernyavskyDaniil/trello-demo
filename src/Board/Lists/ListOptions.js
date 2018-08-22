@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
+import { getData, setData } from "../../fakeApi";
 import {
   Close,
   Container,
@@ -97,6 +98,15 @@ class ListOptions extends Component {
     this.setState({ isActive: false });
   };
 
+  deleteCurrentList = async () => {
+    const { id, updateData } = this.props;
+    const listsData = await getData("lists");
+    delete listsData[id - 1];
+    const newData = listsData.filter(value => Object.keys(value).length !== 0);
+    setData("lists", JSON.stringify(newData));
+    updateData();
+  };
+
   render() {
     const { isActive } = this.state;
     const { isSort } = this.props;
@@ -143,7 +153,7 @@ class ListOptions extends Component {
                   <ActionBtn>Архивировать все карточки списка</ActionBtn>
                 </ActionCard>
                 <CardHr />
-                <ActionCard>
+                <ActionCard onClick={this.deleteCurrentList}>
                   <ActionBtn>Архивировать список</ActionBtn>
                 </ActionCard>
               </Body>

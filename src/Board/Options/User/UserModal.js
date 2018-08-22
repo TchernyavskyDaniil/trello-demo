@@ -3,6 +3,7 @@ import styled from "styled-components";
 import styledMap from "styled-map";
 import { Link } from "react-router-dom";
 import onClickOutside from "react-onclickoutside";
+import { getData, setData } from "../../../fakeApi";
 import {
   Container,
   Head,
@@ -178,10 +179,10 @@ class UserModal extends Component {
     super();
     this.state = {
       userInfo: false,
-      name: "Daniil Tchernyavsky",
-      desc: "DT",
-      nickname: "daniiltchernyavsky",
-      aboutYou: "123",
+      name: "default_name",
+      desc: "default_desc",
+      nickname: "default_nick",
+      aboutYou: "default_bio",
       newName: null,
       newDesc: null,
       newNick: null,
@@ -191,13 +192,21 @@ class UserModal extends Component {
     };
   }
 
-  componentDidMount() {
-    const { name, desc, nickname, aboutYou } = this.state;
+  async componentDidMount() {
+    const nameData = await getData("name");
+    const descData = await getData("desc");
+    const nickData = await getData("nickname");
+    const bioData = await getData("aboutYou");
+
     this.setState({
-      newName: name,
-      newDesc: desc,
-      newNick: nickname,
-      newAbout: aboutYou
+      newName: nameData,
+      name: nameData,
+      newDesc: descData,
+      desc: descData,
+      newNick: nickData,
+      nickname: nickData,
+      newAbout: bioData,
+      aboutYou: bioData
     });
   }
 
@@ -215,6 +224,12 @@ class UserModal extends Component {
 
   setNewData = () => {
     const { newName, newDesc, newNick, newAbout } = this.state;
+
+    setData("name", newName);
+    setData("desc", newDesc);
+    setData("nickname", newNick);
+    setData("aboutYou", newAbout);
+
     this.setState({
       name: newName,
       desc: newDesc,

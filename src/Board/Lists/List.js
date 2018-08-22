@@ -111,13 +111,13 @@ class List extends Component {
 
   render() {
     const { isActiveAdd, cards, isSort } = this.state;
-    const { title } = this.props;
+    const { title, id, updateData } = this.props;
 
     return (
       <Container>
         <Header>
           <Title placeholder="Напишите что - то :)" defaultValue={title} />
-          <ListOptions isSort={isSort} toggle={this.toggleAdd} />
+          <ListOptions isSort={isSort} toggle={this.toggleAdd} id={id} updateData={updateData} />
         </Header>
         <Cards cards={cards} />
         {isActiveAdd ? (

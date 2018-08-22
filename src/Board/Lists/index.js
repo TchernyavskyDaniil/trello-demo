@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { getData, setData } from "../../fakeApi";
 import List from "./List";
 import AddNewList from "./AddNewList";
 
@@ -29,7 +30,8 @@ class Lists extends Component {
   constructor() {
     super();
     this.state = {
-      lists: [
+      lists: [],
+      defaultLists: [
         {
           id: 1,
           title: "Делаем шо - та"
@@ -50,7 +52,11 @@ class Lists extends Component {
     };
   }
 
-  componentDidUpdate(prevState) {
+  componentDidMount() {
+    this.updateData();
+  }
+
+  async componentDidUpdate(prevState) {
     const { lists } = this.state;
     if (prevState.lists !== lists) {
       this.scrollToLastPosition();
@@ -61,11 +67,22 @@ class Lists extends Component {
     const { lists } = this.state;
     const newLists = lists;
     newLists[newLists.length] = { id: newLists.length + 1, title: newValue };
+    setData("lists", JSON.stringify(newLists));
     this.setState({ lists: newLists });
   };
 
   scrollToLastPosition = () => {
     this.node.scrollIntoView({ behavior: "auto", block: "end" });
+  };
+
+  updateData = async () => {
+    const { defaultLists } = this.state;
+    const listsData = await getData("lists");
+    if (listsData !== null) {
+      this.setState({ lists: listsData });
+    } else {
+      setData("lists", defaultLists);
+    }
   };
 
   render() {
@@ -80,7 +97,7 @@ class Lists extends Component {
               }}
               key={list.id}
             >
-              <List title={list.title} />
+              <List title={list.title} id={list.id} updateData={this.updateData} />
             </div>
           ))}
           <AddNewList setNewList={this.setNewList} />

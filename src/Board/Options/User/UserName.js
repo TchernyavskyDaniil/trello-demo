@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
+import { getData, setData } from "../../../fakeApi";
 import { Container, Head, Title, Close } from "../../../UI/TitlePopup";
 import Input from "../../../UI/Input";
 import OptionBtn from "../../../UI/OptionBtn";
@@ -35,24 +36,37 @@ class UserName extends Component {
     super();
     this.state = {
       isActive: false,
-      userName: "Tchernayvsky"
+      userName: "default_name",
+      newName: null
     };
   }
 
+  async componentDidMount() {
+    const data = await getData("userName");
+    this.setState({ userName: data });
+  }
+
   handleClickOutside = () => {
-    this.setState({ isActive: false });
+    const { userName } = this.state;
+    this.setState({ isActive: false, newName: userName });
   };
 
   toggleUser = () => {
-    this.setState(prevState => ({ isActive: !prevState.isActive }));
+    const { userName } = this.state;
+    this.setState(prevState => ({
+      isActive: !prevState.isActive,
+      newName: userName
+    }));
   };
 
   updateInput = event => {
-    this.setState({ userName: event.target.value });
+    this.setState({ newName: event.target.value });
   };
 
   submitName = () => {
-    // some post
+    const { newName } = this.state;
+    setData("userName", newName);
+    this.setState({ userName: newName });
     this.toggleUser();
   };
 
