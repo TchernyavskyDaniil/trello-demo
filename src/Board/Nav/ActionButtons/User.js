@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
 import { Link } from "react-router-dom";
+import axios from "../../../axios";
 import {
   Container,
   Head,
@@ -40,9 +41,22 @@ class User extends Component {
   constructor() {
     super();
     this.state = {
-      isActiveUser: false
+      isActiveUser: false,
+      picture: "/img/profile-avatar.png",
+      user: null
     };
   }
+
+  componentDidMount() {
+    const { id } = this.props;
+    this.updateData(id);
+  }
+
+  updateData = id => {
+    axios.get(`/profiles/${id}`).then(response => {
+      this.setState({ user: response.data, picture: response.data.picture });
+    });
+  };
 
   handleClickOutside = () => {
     this.setState({ isActiveUser: false });
@@ -53,14 +67,17 @@ class User extends Component {
   };
 
   render() {
-    const { isActiveUser } = this.state;
+    const { isActiveUser, picture, user } = this.state;
     return (
       <div>
-        <Avatar src="/img/profile-avatar.png" onClick={this.toggleUser} />
+        <Avatar src={picture} onClick={this.toggleUser} />
         {isActiveUser ? (
           <UserContainer>
             <Head>
-              <Title> Name your profile here </Title>
+              <Title>
+                {" "}
+                {user.name} ({user.nickName}){" "}
+              </Title>
               <Close onClick={this.toggleUser}>
                 {" "}
                 <i className="fas fa-times close" />

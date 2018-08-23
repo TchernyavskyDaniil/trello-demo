@@ -41,15 +41,18 @@ const Img = styled.img`
   }
 `;
 
-export default () => (
-  <Container>
-    <OptionsBoard>
-      <Boards />
-      <Search />
-    </OptionsBoard>
-    <Link to="/">
-      <Img src="/img/trello-logo.png" />
-    </Link>
-    <ActionButtons />
-  </Container>
-);
+export default props => {
+  const { id } = props;
+  return (
+    <Container>
+      <OptionsBoard>
+        <Boards />
+        <Search />
+      </OptionsBoard>
+      <Link to="/">
+        <Img src="/img/trello-logo.png" />
+      </Link>
+      <ActionButtons id={id} />
+    </Container>
+  );
+};

@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import styledMap from "styled-map";
 import onClickOutside from "react-onclickoutside";
 import UserModal from "./UserModal";
+import { admin } from "../../../utils";
 
 const ListUsers = styled.ul`
   padding: 0;
@@ -9,12 +11,30 @@ const ListUsers = styled.ul`
   margin: 0;
 `;
 
-const User = styled.li`
+const Index = styled.li`
   width: 28px;
   height: 28px;
   cursor: pointer;
   border-radius: 25em;
   list-style: none;
+  position: relative;
+
+  &::before {
+    display: ${styledMap({
+      default: "none",
+      admin: "block"
+    })};
+    content: "";
+    background-image: url(${admin});
+    width: 9px;
+    height: 9px;
+    background-position: center;
+    background-size: 9px;
+    background-repeat: no-repeat;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+  }
 `;
 
 const UserImage = styled.img`
@@ -42,13 +62,16 @@ class UserPreview extends Component {
   constructor() {
     super();
     this.state = {
-      isActivePreview: false
+      isActivePreview: false,
+      userData: {
+        picture: "/img/profile-avatar.png"
+      }
     };
   }
 
   componentDidMount() {
-    const { preview } = this.props;
-    this.setState({ isActivePreview: preview });
+    const { preview, user } = this.props;
+    this.setState({ userData: user, isActivePreview: preview });
   }
 
   handleClickOutside = () => {
@@ -62,17 +85,27 @@ class UserPreview extends Component {
   };
 
   render() {
-    const { isActivePreview } = this.state;
-    const { img } = this.props;
+    const { isActivePreview, userData } = this.state;
+    const { mainUser } = this.props;
     return (
       <UserWrapper>
         <ContainerUsers>
           <ListUsers>
-            <User onClick={this.showPreview}>
-              <UserImage src={img} />
-            </User>
+            {mainUser ? (
+              <Index onClick={this.showPreview} admin>
+                <UserImage src={userData.picture} />
+              </Index>
+            ) : (
+              <Index onClick={this.showPreview}>
+                <UserImage src={userData.picture} />
+              </Index>
+            )}
             {isActivePreview ? (
-              <UserModal img={img} preview={isActivePreview} />
+              <UserModal
+                img={userData.picture}
+                data={userData}
+                preview={isActivePreview}
+              />
             ) : null}
           </ListUsers>
         </ContainerUsers>

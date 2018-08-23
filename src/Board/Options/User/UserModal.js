@@ -3,6 +3,7 @@ import styled from "styled-components";
 import styledMap from "styled-map";
 import { Link } from "react-router-dom";
 import onClickOutside from "react-onclickoutside";
+import axios from "../../../axios";
 import {
   Container,
   Head,
@@ -56,7 +57,9 @@ const Name = styled(Link)`
   font-size: 16px;
   line-height: 20px;
   font-weight: 600;
-  max-width: 170px;
+  max-width: 200px;
+  display: inline-block;
+  white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -127,6 +130,7 @@ const AboutYou = styled.span`
   margin: 0;
   padding: 0;
   color: #8c8c8c;
+  max-width: 210px;
 `;
 
 const InputContainer = styled.div`
@@ -187,18 +191,13 @@ class UserModal extends Component {
       newNick: null,
       newAbout: null,
       isActiveRoot: false,
-      isActivePreview: true
+      isActivePreview: true,
+      isAdmin: false
     };
   }
 
   componentDidMount() {
-    const { name, desc, nickname, aboutYou } = this.state;
-    this.setState({
-      newName: name,
-      newDesc: desc,
-      newNick: nickname,
-      newAbout: aboutYou
-    });
+    this.setUserData();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -209,19 +208,22 @@ class UserModal extends Component {
     }
   }
 
-  setNewState = prop => {
-    this.setState({ isActivePreview: prop });
+  setUserData = () => {
+    const { data } = this.props;
+    this.setState({
+      name: data.name,
+      desc: data.desc,
+      nickname: data.nickName,
+      aboutYou: data.about
+    });
+
+    if (data.accessLevel === "admin") {
+      this.setState({ isAdmin: true });
+    }
   };
 
-  setNewData = () => {
-    const { newName, newDesc, newNick, newAbout } = this.state;
-    this.setState({
-      name: newName,
-      desc: newDesc,
-      nickname: newNick,
-      aboutYou: newAbout,
-      userInfo: false
-    });
+  setNewState = prop => {
+    this.setState({ isActivePreview: prop });
   };
 
   setNewName = event => {
@@ -240,6 +242,26 @@ class UserModal extends Component {
     this.setState({ newAbout: event.target.value });
   };
 
+  saveNewData = () => {
+    const { newName, newDesc, newNick, newAbout } = this.state;
+    const { data } = this.props;
+
+    axios.patch(`/profiles/${data.id}`, {
+      name: newName,
+      desc: newDesc,
+      nickName: newNick,
+      about: newAbout
+    });
+
+    this.setState({
+      userInfo: false,
+      name: newName,
+      desc: newDesc,
+      nickname: newNick,
+      aboutYou: newAbout
+    });
+  };
+
   togglePreviewUser = () => {
     this.setState(prevState => ({
       isActivePreview: !prevState.isActivePreview
@@ -248,10 +270,17 @@ class UserModal extends Component {
   };
 
   changeUserInfo = () => {
-    this.setState(prevState => ({ userInfo: !prevState.userInfo }));
+    const { name, desc, nickname, aboutYou } = this.state;
+    this.setState(prevState => ({
+      userInfo: !prevState.userInfo,
+      newName: name,
+      newDesc: desc,
+      newNick: nickname,
+      newAbout: aboutYou
+    }));
   };
 
-  changeRootUser = () => {
+  toggleRootModal = () => {
     this.setState(prevState => ({ isActiveRoot: !prevState.isActiveRoot }));
   };
 
@@ -267,6 +296,23 @@ class UserModal extends Component {
     }
   };
 
+  changeRootUser = bool => {
+    const { data } = this.props;
+    let isAdmin;
+
+    if (bool) {
+      this.setState({ isAdmin: true, isActiveRoot: false });
+      isAdmin = "admin";
+    } else {
+      this.setState({ isAdmin: false, isActiveRoot: false });
+      isAdmin = "user";
+    }
+
+    axios.patch(`/profiles/${data.id}`, {
+      accessLevel: isAdmin
+    });
+  };
+
   render() {
     const {
       userInfo,
@@ -275,7 +321,8 @@ class UserModal extends Component {
       nickname,
       aboutYou,
       isActiveRoot,
-      isActivePreview
+      isActivePreview,
+      isAdmin
     } = this.state;
     const { img, countUser } = this.props;
     return (
@@ -291,7 +338,7 @@ class UserModal extends Component {
                     <i className="fas fa-times close" />{" "}
                   </CloseBtn>
                 </NameWrapper>
-                <Hash> {nickname} </Hash>
+                <Hash> @{nickname} </Hash>
                 <AboutYou> {aboutYou} </AboutYou>
                 <Change onClick={this.changeUserInfo}>
                   {" "}
@@ -334,7 +381,7 @@ class UserModal extends Component {
                           onChange={this.setNewAbout}
                         />
                       </InputContainer>
-                      <Submit onClick={this.setNewData}> Сохранить </Submit>
+                      <Submit onClick={this.saveNewData}> Сохранить </Submit>
                     </BodyInputs>
                     <Hr />
                     <Desc>
@@ -350,9 +397,9 @@ class UserModal extends Component {
             </UserInfo>
             <Body>
               <Actions>
-                <Action onClick={this.changeRootUser}>
+                <Action onClick={this.toggleRootModal}>
                   <ActionTitle>Изменить разрешения ...</ActionTitle>
-                  <Text>(Администратор)</Text>
+                  <Text>{isAdmin ? "(Администратор)" : "(Обычный)"}</Text>
                 </Action>
                 <Action>
                   <ActionTitle>Посмотреть действия на доске</ActionTitle>
@@ -362,20 +409,20 @@ class UserModal extends Component {
                 <RootContainer>
                   <Head>
                     <Title>Изменение прав доступа</Title>
-                    <CloseInfo onClick={this.changeRootUser}>
+                    <CloseInfo onClick={this.toggleRootModal}>
                       <i className="fas fa-times close" />{" "}
                     </CloseInfo>
                   </Head>
                   <Body>
                     <Actions>
-                      <Action>
+                      <Action onClick={() => this.changeRootUser(true)}>
                         <ActionTitle> Администратор </ActionTitle>
                         <Text>
                           Может просматривать и изменять карточки, удалять
                           участников и изменять все настройки доски.
                         </Text>
                       </Action>
-                      <Action>
+                      <Action onClick={() => this.changeRootUser(false)}>
                         <ActionTitle> Обычный </ActionTitle>
                         <Text>
                           Может просматривать и изменять карточки. Может

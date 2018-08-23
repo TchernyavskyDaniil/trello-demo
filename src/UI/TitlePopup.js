@@ -21,6 +21,7 @@ export const Title = styled.h3`
   font-size: 14px;
   text-align: center;
   font-weight: 400;
+  max-width: 280px;
 `;
 
 export const Close = styled.button`

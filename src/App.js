@@ -1,11 +1,14 @@
 import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Board from "./Board";
 
 export default () => (
   <BrowserRouter>
     <React.Fragment>
-      <Route exact path="/" component={Board} />
+      <Switch>
+        <Route path="/:id" component={Board} />
+        <Redirect exact from="/" to="/0" />
+      </Switch>
     </React.Fragment>
   </BrowserRouter>
 );

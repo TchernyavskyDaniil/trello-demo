@@ -18,12 +18,15 @@ const BoardWrapper = styled.div`
   height: 100%;
 `;
 
-export default () => (
-  <BoardWrapper>
-    <Nav />
-    <BoardContainer>
-      <Index />
-      <Lists />
-    </BoardContainer>
-  </BoardWrapper>
-);
+export default props => {
+  const { match } = props;
+  return (
+    <BoardWrapper>
+      <Nav id={match.params.id} />
+      <BoardContainer>
+        <Index />
+        <Lists />
+      </BoardContainer>
+    </BoardWrapper>
+  );
+};

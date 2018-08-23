@@ -6,9 +6,10 @@ import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
 import Menu from "./Menu";
 import CountUsers from "./User/CountUsers";
-import User from "./User/User";
+import User from "./User";
 import Add from "./User/Add";
 import OptionBtn from "../../UI/OptionBtn";
+import axios from "../../axios";
 
 const ContainerBoard = styled.div`
   display: flex;
@@ -69,16 +70,39 @@ class Index extends Component {
     super();
     this.state = {
       isActivePin: false,
-      img: "/img/profile-avatar.png"
+      users: [],
+      mainUser: ""
     };
   }
+
+  componentDidMount() {
+    this.getNewData();
+  }
+
+  getNewData = () => {
+    axios.get("/profiles").then(response => {
+      this.setState({
+        users: response.data
+      });
+      this.setAdmin();
+    });
+  };
+
+  setAdmin = () => {
+    const { users } = this.state;
+    users.forEach(user => {
+      if (user.accessLevel === "admin") {
+        this.setState({ mainUser: user });
+      }
+    });
+  };
 
   setPin = () => {
     this.setState(prevState => ({ isActivePin: !prevState.isActivePin }));
   };
 
   render() {
-    const { isActivePin, img } = this.state;
+    const { isActivePin, users, mainUser } = this.state;
     return (
       <ContainerBoard>
         <BtnWrapper>
@@ -104,10 +128,18 @@ class Index extends Component {
         </BtnWrapper>
         <UserContainer>
           <Users>
-            <User img={img} />
+            {users.map(user => (
+              <React.Fragment key={user.id}>
+                {mainUser === user ? (
+                  <User user={user} mainUser />
+                ) : (
+                  <User user={user} />
+                )}
+              </React.Fragment>
+            ))}
           </Users>
           <UserInfo>
-            <CountUsers img={img} />
+            <CountUsers users={users} />
           </UserInfo>
           <Add />
         </UserContainer>

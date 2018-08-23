@@ -41,14 +41,22 @@ const UserPreview = styled.img`
   cursor: pointer;
 `;
 
+const Users = styled.div``;
+
 class CountUsers extends Component {
   constructor() {
     super();
     this.state = {
       isActive: false,
-      preview: null
+      preview: null,
+      currentUser: null
     };
   }
+
+  setUserMenu = user => {
+    this.setState({ currentUser: user });
+    this.toggleUserMenu();
+  };
 
   toggleListUsers = () => {
     this.setState(prevState => ({
@@ -66,11 +74,11 @@ class CountUsers extends Component {
   };
 
   render() {
-    const { isActive, preview } = this.state;
-    const { img } = this.props;
+    const { isActive, preview, currentUser } = this.state;
+    const { users } = this.props;
     return (
       <div>
-        <Count onClick={this.toggleListUsers}>1</Count>
+        <Count onClick={this.toggleListUsers}>{users.length}</Count>
         {isActive ? (
           <ContainerCount>
             <Head>
@@ -80,11 +88,20 @@ class CountUsers extends Component {
               </Close>
             </Head>
             <Body>
-              <UserPreview src={img} onClick={this.toggleUserMenu} />
+              <Users>
+                {users.map(user => (
+                  <UserPreview
+                    src={user.picture}
+                    onClick={() => this.setUserMenu(user)}
+                    key={user.id}
+                  />
+                ))}
+              </Users>
             </Body>
             {preview ? (
               <UserModal
-                img={img}
+                img={currentUser.picture}
+                data={currentUser}
                 preview={preview}
                 close={this.toggleUserMenu}
                 countUser

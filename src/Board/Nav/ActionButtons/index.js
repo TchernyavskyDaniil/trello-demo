@@ -12,11 +12,14 @@ const ActionsBoard = styled.div`
   margin: 5px 10px 5px 10px;
 `;
 
-export default () => (
-  <ActionsBoard>
-    <Add />
-    <Info />
-    <Notification />
-    <User />
-  </ActionsBoard>
-);
+export default props => {
+  const { id } = props;
+  return (
+    <ActionsBoard>
+      <Add />
+      <Info />
+      <Notification />
+      <User id={id} />
+    </ActionsBoard>
+  );
+};
