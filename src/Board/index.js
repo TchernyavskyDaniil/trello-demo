@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { trelloDefault } from "../utils";
-import Index from "./Options";
+import Options from "./Options";
 import Nav from "./Nav";
 import Lists from "./Lists";
 
@@ -24,7 +24,7 @@ export default props => {
     <BoardWrapper>
       <Nav id={match.params.id} />
       <BoardContainer>
-        <Index />
+        <Options id={match.params.id} />
         <Lists />
       </BoardContainer>
     </BoardWrapper>

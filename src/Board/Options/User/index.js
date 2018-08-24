@@ -98,12 +98,12 @@ class UserPreview extends Component {
 
   render() {
     const { isActivePreview, userData } = this.state;
-    const { mainUser, updateData } = this.props;
+    const { adminUsers, updateData } = this.props;
     return (
       <UserWrapper>
         <ContainerUsers>
           <ListUsers>
-            {mainUser ? (
+            {adminUsers ? (
               <Index onClick={this.showPreview} admin>
                 <UserImage src={userData.picture} />
               </Index>

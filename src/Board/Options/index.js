@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import styledMap from "styled-map";
-import UserName from "./User/UserName";
+import BoardName from "./BoardName";
 import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
 import Menu from "./Menu";
@@ -71,8 +71,7 @@ class Index extends Component {
     this.state = {
       isActivePin: false,
       isUpdateData: false,
-      users: [],
-      mainUser: ""
+      users: []
     };
   }
 
@@ -82,6 +81,7 @@ class Index extends Component {
 
   componentDidUpdate() {
     const { isUpdateData } = this.state;
+
     if (isUpdateData) {
       this.getNewData();
       this.updateData();
@@ -93,16 +93,6 @@ class Index extends Component {
       this.setState({
         users: response.data
       });
-      this.setAdmin();
-    });
-  };
-
-  setAdmin = () => {
-    const { users } = this.state;
-    users.forEach(user => {
-      if (user.accessLevel === "admin") {
-        this.setState({ mainUser: user });
-      }
     });
   };
 
@@ -115,11 +105,12 @@ class Index extends Component {
   };
 
   render() {
-    const { isActivePin, users, mainUser } = this.state;
+    const { isActivePin, users } = this.state;
+    const { id } = this.props;
     return (
       <ContainerBoard>
         <BtnWrapper>
-          <UserName />
+          <BoardName id={id} />
           {isActivePin ? (
             <Pin onClick={this.setPin} pinned>
               <i className="far fa-star star" />
@@ -143,8 +134,8 @@ class Index extends Component {
           <Users>
             {users.map(user => (
               <React.Fragment key={user.id}>
-                {mainUser === user ? (
-                  <User user={user} mainUser updateData={this.updateData} />
+                {user.accessLevel === "admin" ? (
+                  <User user={user} adminUsers updateData={this.updateData} />
                 ) : (
                   <User user={user} updateData={this.updateData} />
                 )}

@@ -3,6 +3,7 @@
     {
       "id": 0,
       "profileId": 0,
+      "titleBoard": "Tchern",
       "lists": [
         {
           "id": 0,
@@ -19,6 +20,7 @@
     {
       "id": 1,
       "profileId": 1,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -35,6 +37,7 @@
     {
       "id": 2,
       "profileId": 2,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -51,6 +54,7 @@
     {
       "id": 3,
       "profileId": 3,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -67,6 +71,7 @@
     {
       "id": 4,
       "profileId": 4,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -83,6 +88,7 @@
     {
       "id": 5,
       "profileId": 5,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -99,6 +105,7 @@
     {
       "id": 6,
       "profileId": 6,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -115,6 +122,7 @@
     {
       "id": 7,
       "profileId": 7,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -131,6 +139,7 @@
     {
       "id": 8,
       "profileId": 8,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -147,6 +156,7 @@
     {
       "id": 9,
       "profileId": 9,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -163,6 +173,7 @@
     {
       "id": 10,
       "profileId": 10,
+      "titleBoard": "Your title is here!",
       "lists": [
         {
           "id": 0,
@@ -192,7 +203,7 @@
       "email": "reynolds.galloway@comcubine.us",
       "phone": "+7 (824) 408-3451",
       "address": "684 Remsen Avenue, Basye, Wisconsin, 6382",
-      "about": "Lol kek ccc",
+      "about": "Lol kek",
       "registered": "07.01.2015"
     },
     {
@@ -200,7 +211,7 @@
       "isActive": false,
       "picture": "https://api.adorable.io/avatars/70/54",
       "age": 31,
-      "accessLevel": "user",
+      "accessLevel": "admin",
       "firstName": "Natalie",
       "lastName": "Colon",
       "name": "Don Erona",
@@ -237,7 +248,7 @@
       "accessLevel": "user",
       "firstName": "Kent",
       "lastName": "Berg",
-      "name": "Kent Berg",
+      "name": "Kent Bergas",
       "desc": "KB",
       "nickName": "PYRAMIS",
       "email": "kent.berg@pyramis.name",

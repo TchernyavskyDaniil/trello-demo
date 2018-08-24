@@ -298,8 +298,8 @@ class UserModal extends Component {
     }
   };
 
-  changeRootUser = bool => {
-    const { data } = this.props;
+  changeRootUser = async bool => {
+    const { data, updateData } = this.props;
     let isAdmin;
 
     if (bool) {
@@ -310,9 +310,11 @@ class UserModal extends Component {
       isAdmin = "user";
     }
 
-    axios.patch(`/profiles/${data.id}`, {
+    await axios.patch(`/profiles/${data.id}`, {
       accessLevel: isAdmin
     });
+
+    await updateData();
   };
 
   render() {
@@ -417,20 +419,48 @@ class UserModal extends Component {
                   </Head>
                   <Body>
                     <Actions>
-                      <Action onClick={() => this.changeRootUser(true)}>
-                        <ActionTitle> Администратор </ActionTitle>
-                        <Text>
-                          Может просматривать и изменять карточки, удалять
-                          участников и изменять все настройки доски.
-                        </Text>
-                      </Action>
-                      <Action onClick={() => this.changeRootUser(false)}>
-                        <ActionTitle> Обычный </ActionTitle>
-                        <Text>
-                          Может просматривать и изменять карточки. Может
-                          изменять некоторые настройки.
-                        </Text>
-                      </Action>
+                      {isAdmin ? (
+                        <React.Fragment>
+                          <Action onClick={() => this.changeRootUser(true)}>
+                            <ActionTitle>
+                              {" "}
+                              Администратор <i className="fas fa-check check" />{" "}
+                            </ActionTitle>
+                            <Text>
+                              Может просматривать и изменять карточки, удалять
+                              участников и изменять все настройки доски.
+                            </Text>
+                          </Action>
+                          <Action onClick={() => this.changeRootUser(false)}>
+                            <ActionTitle> Обычный </ActionTitle>
+                            <Text>
+                              Может просматривать и изменять карточки. Может
+                              изменять некоторые настройки.
+                            </Text>
+                          </Action>
+                        </React.Fragment>
+                      ) : (
+                        <React.Fragment>
+                          {" "}
+                          <Action onClick={() => this.changeRootUser(true)}>
+                            <ActionTitle> Администратор </ActionTitle>
+                            <Text>
+                              Может просматривать и изменять карточки, удалять
+                              участников и изменять все настройки доски.
+                            </Text>
+                          </Action>
+                          <Action onClick={() => this.changeRootUser(false)}>
+                            <ActionTitle>
+                              {" "}
+                              Обычный <i className="fas fa-check check" />{" "}
+                            </ActionTitle>
+                            <Text>
+                              Может просматривать и изменять карточки. Может
+                              изменять некоторые настройки.
+                            </Text>
+                          </Action>
+                        </React.Fragment>
+                      )}
                     </Actions>
                     <Hr />
                     <Desc>
