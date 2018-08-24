@@ -75,7 +75,7 @@ class CountUsers extends Component {
 
   render() {
     const { isActive, preview, currentUser } = this.state;
-    const { users } = this.props;
+    const { users, updateData } = this.props;
     return (
       <div>
         <Count onClick={this.toggleListUsers}>{users.length}</Count>
@@ -104,6 +104,7 @@ class CountUsers extends Component {
                 data={currentUser}
                 preview={preview}
                 close={this.toggleUserMenu}
+                updateData={updateData}
                 countUser
               />
             ) : null}

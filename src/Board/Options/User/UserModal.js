@@ -242,24 +242,26 @@ class UserModal extends Component {
     this.setState({ newAbout: event.target.value });
   };
 
-  saveNewData = () => {
+  saveNewData = async () => {
     const { newName, newDesc, newNick, newAbout } = this.state;
-    const { data } = this.props;
+    const { data, updateData } = this.props;
 
-    axios.patch(`/profiles/${data.id}`, {
+    await axios.patch(`/profiles/${data.id}`, {
       name: newName,
       desc: newDesc,
       nickName: newNick,
       about: newAbout
     });
 
-    this.setState({
+    await this.setState({
       userInfo: false,
       name: newName,
       desc: newDesc,
       nickname: newNick,
       aboutYou: newAbout
     });
+
+    await updateData();
   };
 
   togglePreviewUser = () => {

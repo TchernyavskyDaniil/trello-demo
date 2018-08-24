@@ -70,6 +70,7 @@ class Index extends Component {
     super();
     this.state = {
       isActivePin: false,
+      isUpdateData: false,
       users: [],
       mainUser: ""
     };
@@ -77,6 +78,14 @@ class Index extends Component {
 
   componentDidMount() {
     this.getNewData();
+  }
+
+  componentDidUpdate() {
+    const { isUpdateData } = this.state;
+    if (isUpdateData) {
+      this.getNewData();
+      this.updateData();
+    }
   }
 
   getNewData = () => {
@@ -99,6 +108,10 @@ class Index extends Component {
 
   setPin = () => {
     this.setState(prevState => ({ isActivePin: !prevState.isActivePin }));
+  };
+
+  updateData = () => {
+    this.setState(prevProps => ({ isUpdateData: !prevProps.isUpdateData }));
   };
 
   render() {
@@ -131,15 +144,15 @@ class Index extends Component {
             {users.map(user => (
               <React.Fragment key={user.id}>
                 {mainUser === user ? (
-                  <User user={user} mainUser />
+                  <User user={user} mainUser updateData={this.updateData} />
                 ) : (
-                  <User user={user} />
+                  <User user={user} updateData={this.updateData} />
                 )}
               </React.Fragment>
             ))}
           </Users>
           <UserInfo>
-            <CountUsers users={users} />
+            <CountUsers users={users} updateData={this.updateData} />
           </UserInfo>
           <Add />
         </UserContainer>

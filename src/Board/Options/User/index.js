@@ -74,6 +74,14 @@ class UserPreview extends Component {
     this.setState({ userData: user, isActivePreview: preview });
   }
 
+  componentDidUpdate(prevProps) {
+    const { user } = this.props;
+
+    if (prevProps.user !== user) {
+      this.setState({ userData: user });
+    }
+  }
+
   handleClickOutside = () => {
     this.setState({ isActivePreview: false });
   };
@@ -86,7 +94,7 @@ class UserPreview extends Component {
 
   render() {
     const { isActivePreview, userData } = this.state;
-    const { mainUser } = this.props;
+    const { mainUser, updateData } = this.props;
     return (
       <UserWrapper>
         <ContainerUsers>
@@ -105,6 +113,7 @@ class UserPreview extends Component {
                 img={userData.picture}
                 data={userData}
                 preview={isActivePreview}
+                updateData={updateData}
               />
             ) : null}
           </ListUsers>
