@@ -78,9 +78,13 @@ class UserPreview extends Component {
     const { user } = this.props;
 
     if (prevProps.user !== user) {
-      this.setState({ userData: user });
+      this.setUserData(user);
     }
   }
+
+  setUserData = data => {
+    this.setState({ userData: data });
+  };
 
   handleClickOutside = () => {
     this.setState({ isActivePreview: false });
