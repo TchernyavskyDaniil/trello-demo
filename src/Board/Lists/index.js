@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import styled from "styled-components";
 import List from "./List";
 import AddNewList from "./AddNewList";
+import axios from "../../axios";
 
 const ListCard = styled.div`
   display: flex;
@@ -29,25 +30,12 @@ class Lists extends Component {
   constructor() {
     super();
     this.state = {
-      lists: [
-        {
-          id: 1,
-          title: "Делаем шо - та"
-        },
-        {
-          id: 2,
-          title: "И тут тоже"
-        },
-        {
-          id: 3,
-          title: "А тут думаем что завершили"
-        },
-        {
-          id: 4,
-          title: "А тут продолжаем"
-        }
-      ]
+      lists: []
     };
+  }
+
+  componentDidMount() {
+    this.getDataLists();
   }
 
   componentDidUpdate(prevState) {
@@ -59,9 +47,20 @@ class Lists extends Component {
 
   setNewList = newValue => {
     const { lists } = this.state;
+    const { id } = this.props;
     const newLists = lists;
     newLists[newLists.length] = { id: newLists.length + 1, title: newValue };
     this.setState({ lists: newLists });
+    axios.patch(`/options/${id}`, {
+      lists: newLists
+    });
+  };
+
+  getDataLists = () => {
+    const { id } = this.props;
+    axios.get(`/options/${id}`).then(response => {
+      this.setState({ lists: response.data.lists });
+    });
   };
 
   scrollToLastPosition = () => {
@@ -70,6 +69,8 @@ class Lists extends Component {
 
   render() {
     const { lists } = this.state;
+    const { id } = this.props;
+
     return (
       <ContainerCard>
         <ListCard>
@@ -80,7 +81,7 @@ class Lists extends Component {
               }}
               key={list.id}
             >
-              <List title={list.title} />
+              <List list={list} idUser={id} />
             </div>
           ))}
           <AddNewList setNewList={this.setNewList} />

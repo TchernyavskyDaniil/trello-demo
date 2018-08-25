@@ -11,7 +11,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -20,7 +20,7 @@
     {
       "id": 1,
       "profileId": 1,
-      "titleBoard": "Your title is here!",
+      "titleBoard": "Your first list!!",
       "lists": [
         {
           "id": 0,
@@ -28,9 +28,13 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
+        },
+        {
+          "id": 2,
+          "title": "32"
         }
       ]
     },
@@ -45,7 +49,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -62,7 +66,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -79,7 +83,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -96,7 +100,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -113,7 +117,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -130,7 +134,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -147,7 +151,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -164,7 +168,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -181,7 +185,7 @@
           "cards": [
             {
               "id": 0,
-              "text": "Your first card!"
+              "title": "Your first card!"
             }
           ]
         }
@@ -211,7 +215,7 @@
       "isActive": false,
       "picture": "https://api.adorable.io/avatars/70/54",
       "age": 31,
-      "accessLevel": "admin",
+      "accessLevel": "user",
       "firstName": "Natalie",
       "lastName": "Colon",
       "name": "Don Erona",

@@ -5,6 +5,7 @@ import TextareaAutosize from "react-autosize-textarea";
 import ListOptions from "./ListOptions";
 import Cards from "./Cards";
 import AddNewCard from "./Cards/AddNewCard";
+import axios from "../../axios";
 
 const Container = styled.div`
   margin: 6px;
@@ -85,16 +86,41 @@ class List extends Component {
     this.state = {
       isActiveAdd: true,
       cards: [],
-      isSort: false
+      isSort: false,
+      newTitle: null
     };
   }
 
+  componentDidMount() {
+    const { list } = this.props;
+    this.setState({ newTitle: list.title });
+  }
+
+  onEnterPress = event => {
+    const { newTitle } = this.state;
+    const { idUser } = this.props;
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      axios.patch(`/options/${idUser}`, {
+        title: newTitle
+      });
+    }
+  };
+
+  setNewTitle = event => {
+    this.setState({
+      newTitle: event.target.value
+    });
+  };
+
   addCard = newCard => {
     const { cards } = this.state;
+    console.log(newCard);
     this.setState(prevState => ({
       cards: [...prevState.cards, { title: newCard, id: cards.length + 1 }],
       isSort: true
     }));
+    console.log(cards);
   };
 
   toggleAdd = bool => {
@@ -111,15 +137,20 @@ class List extends Component {
 
   render() {
     const { isActiveAdd, cards, isSort } = this.state;
-    const { title } = this.props;
+    const { list } = this.props;
 
     return (
       <Container>
         <Header>
-          <Title placeholder="Напишите что - то :)" defaultValue={title} />
+          <Title
+            placeholder="Напишите что - то :)"
+            defaultValue={list.title}
+            onChange={this.setNewTitle}
+            onKeyDown={this.onEnterPress}
+          />
           <ListOptions isSort={isSort} toggle={this.toggleAdd} />
         </Header>
-        <Cards cards={cards} />
+        {list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />}
         {isActiveAdd ? (
           <Body onClick={this.toggleAdd}>
             <AddCard>

@@ -25,7 +25,7 @@ export default props => {
       <Nav id={match.params.id} />
       <BoardContainer>
         <Options id={match.params.id} />
-        <Lists />
+        <Lists id={match.params.id} />
       </BoardContainer>
     </BoardWrapper>
   );
