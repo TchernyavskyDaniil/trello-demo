@@ -5,7 +5,7 @@ import TextareaAutosize from "react-autosize-textarea";
 import ListOptions from "./ListOptions";
 import Cards from "./Cards";
 import AddNewCard from "./Cards/AddNewCard";
-import axios from "../../axios";
+// import axios from "../../axios";
 
 const Container = styled.div`
   margin: 6px;
@@ -96,16 +96,16 @@ class List extends Component {
     this.setState({ newTitle: list.title });
   }
 
-  onEnterPress = event => {
-    const { newTitle } = this.state;
-    const { idUser, list } = this.props;
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      // axios.patch(`/options/${idUser}`, {
-      //   title: newTitle
-      // });
-    }
-  };
+  // onEnterPress = event => {
+  //   // const { newTitle } = this.state;
+  //   // const { idUser, list } = this.props;
+  //   // if (event.keyCode === 13) {
+  //   //   event.preventDefault();
+  //   //   // axios.patch(`/options/${idUser}`, {
+  //   //   //   title: newTitle
+  //   //   // });
+  //   // }
+  // };
 
   setNewTitle = event => {
     this.setState({
@@ -135,7 +135,7 @@ class List extends Component {
 
   render() {
     const { isActiveAdd, cards, isSort, newTitle } = this.state;
-    const { list } = this.props;
+    // const { list } = this.props;
 
     return (
       <Container>
@@ -148,7 +148,7 @@ class List extends Component {
           />
           <ListOptions isSort={isSort} toggle={this.toggleAdd} />
         </Header>
-        {/*{list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />}*/}
+        {/* {list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />} */}
         <Cards cards={cards} />
         {isActiveAdd ? (
           <Body onClick={this.toggleAdd}>
