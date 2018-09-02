@@ -39,8 +39,8 @@ const SearchInput = styled(Input)`
 
 const AddContainer = styled(Container)`
   min-height: 250px;
-  min-width: 300px;
-  left: 0;
+  max-width: 300px;
+  right: 0;
 `;
 
 const Desc = styled.p`

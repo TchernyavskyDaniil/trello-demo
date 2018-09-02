@@ -3,7 +3,7 @@
     {
       "id": 0,
       "profileId": 0,
-      "titleBoard": "Tchern",
+      "titleBoard": "Tchernyavsk",
       "lists": [
         {
           "id": 0,
@@ -14,13 +14,23 @@
               "title": "Your first card!"
             }
           ]
+        },
+        {
+          "id": 2,
+          "title": "ыыы",
+          "cards": []
+        },
+        {
+          "id": 3,
+          "title": "ыы",
+          "cards": []
         }
       ]
     },
     {
       "id": 1,
       "profileId": 1,
-      "titleBoard": "Your first list!!",
+      "titleBoard": "Tchernyavsky",
       "lists": [
         {
           "id": 0,
@@ -35,6 +45,11 @@
         {
           "id": 2,
           "title": "32"
+        },
+        {
+          "id": 3,
+          "title": "123",
+          "cards": []
         }
       ]
     },
@@ -69,6 +84,11 @@
               "title": "Your first card!"
             }
           ]
+        },
+        {
+          "id": 2,
+          "title": "22",
+          "cards": []
         }
       ]
     },

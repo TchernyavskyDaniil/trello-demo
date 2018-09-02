@@ -91,19 +91,19 @@ class List extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     const { list } = this.props;
     this.setState({ newTitle: list.title });
   }
 
   onEnterPress = event => {
     const { newTitle } = this.state;
-    const { idUser } = this.props;
+    const { idUser, list } = this.props;
     if (event.keyCode === 13) {
       event.preventDefault();
-      axios.patch(`/options/${idUser}`, {
-        title: newTitle
-      });
+      // axios.patch(`/options/${idUser}`, {
+      //   title: newTitle
+      // });
     }
   };
 
@@ -115,12 +115,10 @@ class List extends Component {
 
   addCard = newCard => {
     const { cards } = this.state;
-    console.log(newCard);
     this.setState(prevState => ({
       cards: [...prevState.cards, { title: newCard, id: cards.length + 1 }],
       isSort: true
     }));
-    console.log(cards);
   };
 
   toggleAdd = bool => {
@@ -136,7 +134,7 @@ class List extends Component {
   };
 
   render() {
-    const { isActiveAdd, cards, isSort } = this.state;
+    const { isActiveAdd, cards, isSort, newTitle } = this.state;
     const { list } = this.props;
 
     return (
@@ -144,13 +142,14 @@ class List extends Component {
         <Header>
           <Title
             placeholder="Напишите что - то :)"
-            defaultValue={list.title}
+            defaultValue={newTitle}
             onChange={this.setNewTitle}
             onKeyDown={this.onEnterPress}
           />
           <ListOptions isSort={isSort} toggle={this.toggleAdd} />
         </Header>
-        {list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />}
+        {/*{list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />}*/}
+        <Cards cards={cards} />
         {isActiveAdd ? (
           <Body onClick={this.toggleAdd}>
             <AddCard>

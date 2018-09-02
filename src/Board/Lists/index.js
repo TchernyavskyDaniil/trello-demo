@@ -49,8 +49,15 @@ class Lists extends Component {
     const { lists } = this.state;
     const { id } = this.props;
     const newLists = lists;
-    newLists[newLists.length] = { id: newLists.length + 1, title: newValue };
+
+    newLists[newLists.length] = {
+      id: newLists.length + 1,
+      title: newValue,
+      cards: []
+    };
+
     this.setState({ lists: newLists });
+
     axios.patch(`/options/${id}`, {
       lists: newLists
     });
@@ -58,6 +65,7 @@ class Lists extends Component {
 
   getDataLists = () => {
     const { id } = this.props;
+
     axios.get(`/options/${id}`).then(response => {
       this.setState({ lists: response.data.lists });
     });
