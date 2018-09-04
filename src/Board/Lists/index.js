@@ -35,19 +35,19 @@ class Lists extends Component {
   }
 
   componentDidMount() {
-    this.getDataLists();
+    const { getLists, id } = this.props;
+    getLists(id);
   }
 
   componentDidUpdate(prevState) {
     const { lists } = this.state;
     if (prevState.lists !== lists) {
-      this.scrollToLastPosition();
+      // this.scrollToLastPosition();
     }
   }
 
   setNewList = newValue => {
-    const { lists } = this.state;
-    const { id } = this.props;
+    const { id, lists } = this.props;
     const newLists = lists;
 
     newLists[newLists.length] = {
@@ -63,21 +63,12 @@ class Lists extends Component {
     });
   };
 
-  getDataLists = () => {
-    const { id } = this.props;
-
-    axios.get(`/options/${id}`).then(response => {
-      this.setState({ lists: response.data.lists });
-    });
-  };
-
   scrollToLastPosition = () => {
     this.node.scrollIntoView({ behavior: "auto", block: "end" });
   };
 
   render() {
-    const { lists } = this.state;
-    const { id } = this.props;
+    const { id, lists } = this.props;
 
     return (
       <ContainerCard>

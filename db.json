@@ -6,23 +6,18 @@
       "titleBoard": "Tchernyavsk",
       "lists": [
         {
-          "id": 0,
-          "title": "Your first list!",
-          "cards": [
-            {
-              "id": 0,
-              "title": "Your first card!"
-            }
-          ]
+          "id": 1,
+          "title": "22",
+          "cards": []
         },
         {
           "id": 2,
-          "title": "ыыы",
+          "title": "33",
           "cards": []
         },
         {
           "id": 3,
-          "title": "ыы",
+          "title": "11",
           "cards": []
         }
       ]
@@ -33,22 +28,8 @@
       "titleBoard": "Tchernyavsky",
       "lists": [
         {
-          "id": 0,
-          "title": "Your first list!",
-          "cards": [
-            {
-              "id": 0,
-              "title": "Your first card!"
-            }
-          ]
-        },
-        {
-          "id": 2,
-          "title": "32"
-        },
-        {
-          "id": 3,
-          "title": "123",
+          "id": 1,
+          "title": "22",
           "cards": []
         }
       ]

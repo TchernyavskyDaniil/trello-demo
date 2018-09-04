@@ -19,13 +19,14 @@ const BoardWrapper = styled.div`
 `;
 
 export default props => {
-  const { match } = props;
+  const { id, profiles, getProfiles, getLists, lists } = props;
   return (
     <BoardWrapper>
-      <Nav id={match.params.id} />
+      <Nav id={id} />
       <BoardContainer>
-        <Options id={match.params.id} />
-        <Lists id={match.params.id} />
+        {console.log(lists)}
+        <Options id={id} profiles={profiles} getProfiles={getProfiles} />
+        <Lists id={id} lists={lists} getLists={getLists} />
       </BoardContainer>
     </BoardWrapper>
   );

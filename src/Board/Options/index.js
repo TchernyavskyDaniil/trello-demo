@@ -9,7 +9,6 @@ import CountUsers from "./User/CountUsers";
 import User from "./User";
 import Add from "./User/Add";
 import OptionBtn from "../../UI/OptionBtn";
-import axios from "../../axios";
 
 const ContainerBoard = styled.div`
   display: flex;
@@ -70,31 +69,24 @@ class Index extends Component {
     super();
     this.state = {
       isActivePin: false,
-      isUpdateData: false,
-      users: []
+      isUpdateData: false
     };
   }
 
   componentDidMount() {
-    this.getNewData();
+    const { getProfiles } = this.props;
+    getProfiles();
   }
 
   componentDidUpdate() {
     const { isUpdateData } = this.state;
+    const { getProfiles } = this.props;
 
     if (isUpdateData) {
-      this.getNewData();
+      getProfiles();
       this.updateData();
     }
   }
-
-  getNewData = () => {
-    axios.get("/profiles").then(response => {
-      this.setState({
-        users: response.data
-      });
-    });
-  };
 
   setPin = () => {
     this.setState(prevState => ({ isActivePin: !prevState.isActivePin }));
@@ -105,8 +97,8 @@ class Index extends Component {
   };
 
   render() {
-    const { isActivePin, users } = this.state;
-    const { id } = this.props;
+    const { isActivePin } = this.state;
+    const { id, profiles } = this.props;
     return (
       <ContainerBoard>
         <BtnWrapper>
@@ -132,18 +124,22 @@ class Index extends Component {
         </BtnWrapper>
         <UserContainer>
           <Users>
-            {users.map(user => (
-              <React.Fragment key={user.id}>
-                {user.accessLevel === "admin" ? (
-                  <User user={user} adminUsers updateData={this.updateData} />
+            {profiles.map(profile => (
+              <React.Fragment key={profile.id}>
+                {profile.accessLevel === "admin" ? (
+                  <User
+                    user={profile}
+                    adminUsers
+                    updateData={this.updateData}
+                  />
                 ) : (
-                  <User user={user} updateData={this.updateData} />
+                  <User user={profile} updateData={this.updateData} />
                 )}
               </React.Fragment>
             ))}
           </Users>
           <UserInfo>
-            <CountUsers users={users} updateData={this.updateData} />
+            <CountUsers users={profiles} updateData={this.updateData} />
           </UserInfo>
           <Add />
         </UserContainer>
