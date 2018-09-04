@@ -135,7 +135,7 @@ class List extends Component {
 
   render() {
     const { isActiveAdd, cards, isSort, newTitle } = this.state;
-    // const { list } = this.props;
+    const { lists, list } = this.props;
 
     return (
       <Container>
@@ -146,7 +146,12 @@ class List extends Component {
             onChange={this.setNewTitle}
             onKeyDown={this.onEnterPress}
           />
-          <ListOptions isSort={isSort} toggle={this.toggleAdd} />
+          <ListOptions
+            isSort={isSort}
+            toggle={this.toggleAdd}
+            lists={lists}
+            list={list}
+          />
         </Header>
         {/* {list.cards ? <Cards cards={list.cards} /> : <Cards cards={cards} />} */}
         <Cards cards={cards} />

@@ -30,7 +30,7 @@ class Lists extends Component {
   constructor() {
     super();
     this.state = {
-      lists: []
+      listsLocal: []
     };
   }
 
@@ -39,10 +39,10 @@ class Lists extends Component {
     getLists(id);
   }
 
-  componentDidUpdate(prevState) {
-    const { lists } = this.state;
-    if (prevState.lists !== lists) {
-      // this.scrollToLastPosition();
+  componentDidUpdate(prevProps) {
+    const { listsLocal } = this.state;
+    if (prevProps.lists !== listsLocal) {
+      this.scrollToLastPosition();
     }
   }
 
@@ -56,7 +56,7 @@ class Lists extends Component {
       cards: []
     };
 
-    this.setState({ lists: newLists });
+    this.setState({ listsLocal: newLists }); // ????
 
     axios.patch(`/options/${id}`, {
       lists: newLists
@@ -64,7 +64,9 @@ class Lists extends Component {
   };
 
   scrollToLastPosition = () => {
-    this.node.scrollIntoView({ behavior: "auto", block: "end" });
+    if (this.node) {
+      this.node.scrollIntoView({ behavior: "auto", block: "end" });
+    }
   };
 
   render() {
@@ -80,7 +82,7 @@ class Lists extends Component {
               }}
               key={list.id}
             >
-              <List list={list} idUser={id} />
+              <List list={list} lists={lists} idUser={id} />
             </div>
           ))}
           <AddNewList setNewList={this.setNewList} />

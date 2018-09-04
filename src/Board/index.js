@@ -24,7 +24,6 @@ export default props => {
     <BoardWrapper>
       <Nav id={id} />
       <BoardContainer>
-        {console.log(lists)}
         <Options id={id} profiles={profiles} getProfiles={getProfiles} />
         <Lists id={id} lists={lists} getLists={getLists} />
       </BoardContainer>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
+import axios from "../../axios";
 import {
   Close,
   Container,
@@ -92,6 +93,16 @@ class ListOptions extends Component {
     this.setState({ isActive: false });
     toggle(true);
   };
+
+  // deleteList = () => {
+  //   const { lists, list } = this.props;
+  //   delete lists[list.id];
+  //   const newLists = lists.filter(val => Object.keys(val).length !== 0);
+  //
+  //   axios.patch(`/options/${list.id}`, {
+  //
+  //   })
+  // };
 
   handleClickOutside = () => {
     this.setState({ isActive: false });
