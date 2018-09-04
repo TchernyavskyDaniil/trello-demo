@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import onClickOutside from "react-onclickoutside";
-import axios from "../../axios";
 import {
   Close,
   Container,
