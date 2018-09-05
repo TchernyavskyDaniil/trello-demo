@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import styled from "styled-components";
+import { connect } from "react-redux";
 import List from "./List";
 import AddNewList from "./AddNewList";
 import axios from "../../axios";
+import { getLists } from "../../actions/listsActions";
 
 const ListCard = styled.div`
   display: flex;
@@ -35,8 +37,8 @@ class Lists extends Component {
   }
 
   componentDidMount() {
-    const { getLists, id } = this.props;
-    getLists(id);
+    const { getListsActions, id } = this.props;
+    getListsActions(id);
   }
 
   componentDidUpdate(prevProps) {
@@ -92,4 +94,15 @@ class Lists extends Component {
   }
 }
 
-export default Lists;
+const mapStateToProps = store => ({
+  lists: store.lists.lists
+});
+
+const mapDispatchToProps = dispatch => ({
+  getListsActions: id => dispatch(getLists(id))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Lists);

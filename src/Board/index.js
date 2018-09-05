@@ -19,13 +19,13 @@ const BoardWrapper = styled.div`
 `;
 
 export default props => {
-  const { id, getLists, lists } = props;
+  const { id } = props;
   return (
     <BoardWrapper>
       <Nav id={id} />
       <BoardContainer>
         <Options id={id} />
-        <Lists id={id} lists={lists} getLists={getLists} />
+        <Lists id={id} />
       </BoardContainer>
     </BoardWrapper>
   );
