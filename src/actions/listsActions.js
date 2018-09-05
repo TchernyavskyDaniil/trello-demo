@@ -2,6 +2,7 @@ import axios from "../axios";
 
 export const GET_LIST_REQUEST = "GET_LIST_REQUEST";
 
+// axios.get(`/options/${id}`)
 export function getLists(id) {
   return dispatch => {
     axios.get(`/options/${id}`).then(response => {

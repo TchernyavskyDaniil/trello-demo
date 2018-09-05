@@ -2,11 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { BrowserRouter, Route, Redirect, Switch } from "react-router-dom";
 import Board from "./Board";
-import { getProfiles } from "./actions/profilesActions";
 import { getLists } from "./actions/listsActions";
 
 const App = props => {
-  const { profiles, getProfilesAction, getListsActions, lists } = props;
+  const { getListsActions, lists } = props;
   return (
     <BrowserRouter>
       <React.Fragment>
@@ -16,10 +15,8 @@ const App = props => {
             render={renderProps => (
               <Board
                 id={renderProps.match.params.id}
-                profiles={profiles}
                 lists={lists}
                 getLists={getListsActions}
-                getProfiles={getProfilesAction}
               />
             )}
           />
@@ -31,12 +28,10 @@ const App = props => {
 };
 
 const mapStateToProps = store => ({
-  profiles: store.profiles.profiles,
   lists: store.lists.lists
 });
 
 const mapDispatchToProps = dispatch => ({
-  getProfilesAction: () => dispatch(getProfiles()),
   getListsActions: id => dispatch(getLists(id))
 });
 

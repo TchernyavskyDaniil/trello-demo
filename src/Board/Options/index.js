@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import styledMap from "styled-map";
+import { connect } from "react-redux";
 import BoardName from "./BoardName";
 import TypeBoard from "./TypeBoard";
 import Visibility from "./Visibility";
@@ -9,6 +10,7 @@ import CountUsers from "./User/CountUsers";
 import User from "./User";
 import Add from "./User/Add";
 import OptionBtn from "../../UI/OptionBtn";
+import { getProfiles } from "../../actions/profilesActions";
 
 const ContainerBoard = styled.div`
   display: flex;
@@ -74,16 +76,16 @@ class Index extends Component {
   }
 
   componentDidMount() {
-    const { getProfiles } = this.props;
-    getProfiles();
+    const { getProfilesAction } = this.props;
+    getProfilesAction();
   }
 
   componentDidUpdate() {
     const { isUpdateData } = this.state;
-    const { getProfiles } = this.props;
+    const { getProfilesAction } = this.props;
 
     if (isUpdateData) {
-      getProfiles();
+      getProfilesAction();
       this.updateData();
     }
   }
@@ -149,4 +151,15 @@ class Index extends Component {
   }
 }
 
-export default Index;
+const mapStateToProps = store => ({
+  profiles: store.profiles.profiles
+});
+
+const mapDispatchToProps = dispatch => ({
+  getProfilesAction: () => dispatch(getProfiles())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Index);
