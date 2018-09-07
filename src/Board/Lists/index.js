@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import List from "./List";
 import AddNewList from "./AddNewList";
 import axios from "../../axios";
-import { getLists } from "../../actions/listsActions";
+import getLists from "../../actions/listsAction";
 
 const ListCard = styled.div`
   display: flex;

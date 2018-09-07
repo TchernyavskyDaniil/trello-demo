@@ -10,7 +10,7 @@ import CountUsers from "./User/CountUsers";
 import User from "./User";
 import Add from "./User/Add";
 import OptionBtn from "../../UI/OptionBtn";
-import { getProfiles } from "../../actions/profilesActions";
+import getProfiles from "../../actions/profilesAction";
 
 const ContainerBoard = styled.div`
   display: flex;

@@ -1,4 +1,4 @@
-import { GET_PROFILES_REQUEST } from "../actions/profilesActions";
+import { GET_PROFILES_REQUEST } from "../actions/types";
 
 const initialState = {
   profiles: []

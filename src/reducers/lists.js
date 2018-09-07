@@ -1,4 +1,4 @@
-import { GET_LIST_REQUEST } from "../actions/listsActions";
+import { GET_LIST_REQUEST } from "../actions/types";
 
 const initialState = {
   lists: [],
